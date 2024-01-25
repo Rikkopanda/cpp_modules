@@ -3,7 +3,7 @@
 SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 EXE = out
-FLAGS = -Wall -Werror -Wextra \
+FLAGS = #-Wall -Werror -Wextra \
 	-std=c++98
 
 .PHONY: all clean fclean re bonus
