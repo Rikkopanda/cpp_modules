@@ -1,29 +1,37 @@
 
+SRCDIR = src/
 
-SRCS = main.cpp \
+OBJDIR = obj/
+
+SRCS = $(addprefix $(SRCDIR),main.cpp \
 	helper_functions.cpp \
+	contacts_helper_functions.cpp \
 	phone_book.cpp \
-	contacts.cpp
+	contacts.cpp)
 
-OBJS = $(SRCS:.cpp=.o)
-EXE = out
-FLAGS = #-Wall -Werror -Wextra \
+OBJS = $(addprefix $(OBJDIR), $(notdir $(SRCS:.cpp=.o)))
+EXE = phone_book
+FLAGS = -Wall -Werror -Wextra \
 	-std=c++98
 
 .PHONY: all clean fclean re bonus
 
-all: $(EXE)
+all: $(OBJDIR) $(EXE)
+
+$(OBJDIR):
+	mkdir $(OBJDIR)
 
 $(EXE) : $(OBJS)
 	g++ $(FLAGS) $(OBJS) -o $(EXE)
 
-$(OBJS): %.o: %.cpp
+$(OBJS): $(OBJDIR)%.o: $(SRCDIR)%.cpp
 		g++ $(FLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
 
 fclean:	clean
-	rm (EXE)
+	rm $(EXE)
+	rm -r $(OBJDIR)
 
 re:	clean all

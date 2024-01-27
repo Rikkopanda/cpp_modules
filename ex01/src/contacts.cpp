@@ -3,49 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   contacts.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rik <rik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 18:30:28 by rik               #+#    #+#             */
-/*   Updated: 2024/01/26 18:42:34 by rik              ###   ########.fr       */
+/*   Updated: 2024/01/27 11:33:15 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "contacts.hpp"
-
-void print_field(std::string str)
-{
-	char		print_str[10];
-	int 		i;
-	int			start_i;
-	int			trunc;
-	int			display_field_len;
-
-	trunc = 0;
-	start_i = 9 - str.length();
-	if (start_i < 0)
-	{
-		start_i = 0;
-		trunc = 1;
-	}
-	display_field_len = 9 - trunc;
-	for (i = 0; i < display_field_len; i++)
-	{
-		if (start_i <= i)
-			print_str[i] = str[i - start_i];
-		else
-			print_str[i] = ' ';
-	}
-	if (trunc)
-		print_str[i++] = '.';
-	print_str[i] = '|';
-	std::cout << print_str;
-}
+#include "stdlib.h"
 
 void Contact::print_preview(int contact_nbr)
 {
 	std::string contact_nbr_str;
 
-	contact_nbr_str = std::to_string(contact_nbr);
+	std::cout << contact_nbr << std::flush;
 	print_field(contact_nbr_str);
 	print_field(Contact::first_name);
 	print_field(Contact::last_name);
@@ -68,6 +40,19 @@ Contact::Contact()
 	Contact::added = 0;
 }
 
+void print_field(std::string str)
+{
+	std::string		print_str;
+	int				start_i;
+
+	print_str = "          |";
+	start_i = (print_str.length() - 1)  - str.length();
+	if (start_i < 0)
+		start_i = 0;
+	insert_str_in_array(&str, &print_str, start_i, 9, 1);
+	std::cout << print_str;
+}
+
 int user_input(std::string prompt_text, std::string *dest)
 {
 	std::string str;
@@ -82,7 +67,30 @@ int user_input(std::string prompt_text, std::string *dest)
 			break;
 	}
 	std::cin.clear();
+	if (is_all_spaces(str))
+	{
+		std::cout << "ERROR: fields cant be empty" << std::endl;
+		std::cin.clear();	
+		user_input(prompt_text, dest);
+	}
 	return (0);
+}
+
+void user_input_phone_number(std::string *phone_number, std::string *first_name)
+{
+	std::string prompt_text;
+
+	prompt_text = "enter" + *first_name + "'s " + "phone number";
+	while (1)
+	{
+		user_input(prompt_text, phone_number);
+		if (!(is_all_num(*phone_number) && (*phone_number).length() > 2 && (*phone_number).length() < 14))
+		{
+			std::cout << "ERROR: phone number can contain only digits and must be between 3 and 13 digits" << std::endl;
+		}
+		else
+			break;
+	}
 }
 
 void Contact::input_data(int i)
@@ -95,8 +103,7 @@ void Contact::input_data(int i)
 	user_input(prompt_text, &last_name);
 	prompt_text = "enter" + first_name + "'s " + "nick name";
 	user_input(prompt_text, &nick_name);
-	prompt_text = "enter" + first_name + "'s " + "phone number";
-	user_input(prompt_text, &phone_number);
+	user_input_phone_number(&phone_number, &first_name);
 	prompt_text = "enter" + first_name + "'s " + "darkest secret";
 	user_input(prompt_text, &darkest_secret);
 

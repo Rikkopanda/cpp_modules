@@ -24,4 +24,13 @@ class Contact {
 		void print_all_data();
 };
 
+void print_field(std::string str);
+
+
+// helper functions
+
+void insert_str_in_array(std::string *insert_str, std::string *str, int start, int end, int trunc);
+int is_all_num(std::string str);
+int is_all_spaces(std::string str);
+
 #endif

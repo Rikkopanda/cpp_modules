@@ -11,7 +11,7 @@ int	main(int argc, char *argv[])
 
 	while (1)
 	{
-		std::cout << "enter command:\n";
+		std::cout << "enter command:" << std::endl;
 		std::cin >> input;
 		if (input.compare("") == 0)
 			break;
@@ -22,6 +22,5 @@ int	main(int argc, char *argv[])
 		else if (input.compare("EXIT") == 0)
 			break;
 	}
-
 	return 0;
 }
