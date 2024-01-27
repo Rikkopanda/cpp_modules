@@ -1,6 +1,10 @@
 
 
-SRCS = main.cpp
+SRCS = main.cpp \
+	helper_functions.cpp \
+	phone_book.cpp \
+	contacts.cpp
+
 OBJS = $(SRCS:.cpp=.o)
 EXE = out
 FLAGS = #-Wall -Werror -Wextra \
