@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/31 16:19:49 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/02/01 16:31:15 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,14 @@ int main(int argc, char *argv[])
 			break;
 		case 0:
 			h.complain("DEBUG");
-			h.complain("INFO");
-			h.complain("WARNING");
-			h.complain("ERROR");
-			break;
+			[[fallthrough]];
 		case 1:
 			h.complain("INFO");
-			h.complain("WARNING");
-			h.complain("ERROR");
+			[[fallthrough]];
 			break;
 		case 2:
 			h.complain("WARNING");
-			h.complain("ERROR");
+			[[fallthrough]];
 			break;
 		case 3:
 			h.complain("ERROR");
