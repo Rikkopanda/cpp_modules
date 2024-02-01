@@ -1,5 +1,4 @@
 
-
 SRCS = megaphone.cpp
 OBJS = $(SRCS:.cpp=.o)
 EXE = megaphone

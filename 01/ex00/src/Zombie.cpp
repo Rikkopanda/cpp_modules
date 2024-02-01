@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 10:18:54 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/29 10:18:55 by rverhoev         ###   ########.fr       */
+/*   Created: 2024/01/29 13:24:11 by rverhoev          #+#    #+#             */
+/*   Updated: 2024/01/29 18:10:20 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONE_BOOK_HPP
-# define PHONE_BOOK_HPP
+#include "Zombie.hpp"
 
-#include <iostream>
-#include <string>
+void Zombie::announce( void )
+{
+	std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}
 
-#include "Contacts.hpp"
+Zombie::Zombie()
+{
+}
 
-class PhoneBook {
-	private:
-		Contact pub_contacts[8];
-	public:
-		int add();
-		int search();
-		PhoneBook();
-		~PhoneBook();
-};
+Zombie::Zombie(std::string name)
+{
+  this->name = name;
+}
 
-#endif
+Zombie::~Zombie()
+{
+  std::cout << name << " is destroyed" << std::endl;
+}

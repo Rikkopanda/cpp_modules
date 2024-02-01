@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 10:18:54 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/29 10:18:55 by rverhoev         ###   ########.fr       */
+/*   Created: 2024/01/29 13:24:11 by rverhoev          #+#    #+#             */
+/*   Updated: 2024/01/31 15:02:15 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONE_BOOK_HPP
-# define PHONE_BOOK_HPP
+#include "HumanA.hpp"
 
-#include <iostream>
-#include <string>
+HumanA::HumanA(std::string name, Weapon &weapon)
+{
+	this->weapon = &weapon;
+	this->name = name;
+	std::cout << name << " is made" << std::endl;
+}
 
-#include "Contacts.hpp"
+HumanA::~HumanA()
+{
+	std::cout << name << " destroyed" << std::endl;
+}
 
-class PhoneBook {
-	private:
-		Contact pub_contacts[8];
-	public:
-		int add();
-		int search();
-		PhoneBook();
-		~PhoneBook();
-};
+void	HumanA::attack( void )
+{
+	std::cout << name << " attacks with their " << weapon->getType() << std::endl;
+}
 
-#endif

@@ -1,43 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 10:18:26 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/29 10:18:28 by rverhoev         ###   ########.fr       */
+/*   Created: 2024/01/29 13:23:01 by rverhoev          #+#    #+#             */
+/*   Updated: 2024/01/31 16:31:55 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <string>
 
-void	toupper(char *c)
+#include "HumanA.hpp"
+#include "HumanB.hpp"
+#include "Weapon.hpp"
+
+int main()
 {
-	if (*c >= 97 && *c <= 122)
-		*c -= 32;
-}
-
-int	main(int argc, char *argv[])
-{
-	std::string str;
-
-	if (argc == 1)
 	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
-		return 0;
+		Weapon club = Weapon("crude spiked club");
+		HumanA bob("Bob", club);
+		bob.attack();
+		club.setType("some other type of club");
+		bob.attack();
 	}
-	for (int i = 1; i < argc; i++)
 	{
-		str = argv[i];
-		for (size_t j = 0; j < str.length(); j++)
-		{
-			toupper(&argv[i][j]);
-		}
-		std::cout << argv[i];
+		Weapon club = Weapon("crude spiked club");
+		HumanB jim("Jim");
+		jim.attack();
+		jim.setWeapon(club);
+		jim.attack();
+		club.setType("some other type of club");
+		jim.attack();
 	}
-	std::cout << std::endl;
-
 	return 0;
 }

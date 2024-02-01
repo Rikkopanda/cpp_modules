@@ -1,43 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 10:18:26 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/29 10:18:28 by rverhoev         ###   ########.fr       */
+/*   Created: 2024/01/29 18:11:09 by rverhoev          #+#    #+#             */
+/*   Updated: 2024/01/31 14:44:08 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef Harl_HPP
+# define Harl_HPP
 
 #include <iostream>
 #include <string>
 
-void	toupper(char *c)
-{
-	if (*c >= 97 && *c <= 122)
-		*c -= 32;
-}
+class Harl {
+	private:
+		void debug( void );
+		void info( void );
+		void warning( void );
+		void error( void );  
+	public:
+		Harl(void);
+		~Harl(void);
+		void complain( std::string level );
+};
 
-int	main(int argc, char *argv[])
-{
-	std::string str;
-
-	if (argc == 1)
-	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
-		return 0;
-	}
-	for (int i = 1; i < argc; i++)
-	{
-		str = argv[i];
-		for (size_t j = 0; j < str.length(); j++)
-		{
-			toupper(&argv[i][j]);
-		}
-		std::cout << argv[i];
-	}
-	std::cout << std::endl;
-
-	return 0;
-}
+#endif

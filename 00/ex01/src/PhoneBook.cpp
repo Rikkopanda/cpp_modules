@@ -17,17 +17,19 @@ int PhoneBook::search()
 		std::cin >> input;
 		if (std::cin.eof())
 			return (-1);
-		if (input.length() > 1)
+		selected_contact = f_stoi(input);
+		if (input.length() > 1 || !(selected_contact > 0 && selected_contact < 9))
 		{
-			std::cout << "wrong input, supply single digit between 1 and 8";
+			std::cout << "wrong input, supply single digit between >= 1 and <= 8" << std::endl;
 			continue;
 		}
-		selected_contact = f_stoi(input);
 		break;
 	}
 	pub_contacts[selected_contact - 1].print_all_data();
 	return (0);
 }
+//if (pub_contacts[selected_contact - 1].added == 0)
+//	return (std::cout << "contact is empty" << std::endl, 0);
 //std::cout << "ctrl-d pressed" << std::endl,
 
 PhoneBook::PhoneBook()

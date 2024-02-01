@@ -1,43 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 10:18:26 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/29 10:18:28 by rverhoev         ###   ########.fr       */
+/*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
+/*   Updated: 2024/01/31 10:35:12 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Harl.hpp"
 #include <iostream>
 #include <string>
 
-void	toupper(char *c)
+int main( void )
 {
-	if (*c >= 97 && *c <= 122)
-		*c -= 32;
-}
+	Harl	h;
 
-int	main(int argc, char *argv[])
-{
-	std::string str;
-
-	if (argc == 1)
-	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
-		return 0;
-	}
-	for (int i = 1; i < argc; i++)
-	{
-		str = argv[i];
-		for (size_t j = 0; j < str.length(); j++)
-		{
-			toupper(&argv[i][j]);
-		}
-		std::cout << argv[i];
-	}
-	std::cout << std::endl;
-
+	h.complain("DEBUG");
+	h.complain("INFO");
+	h.complain("WARNING");
+	h.complain("ERROR");
 	return 0;
 }

@@ -1,43 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 10:18:26 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/29 10:18:28 by rverhoev         ###   ########.fr       */
+/*   Created: 2024/01/29 18:11:09 by rverhoev          #+#    #+#             */
+/*   Updated: 2024/01/31 14:59:16 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef HUMANA_HPP
+# define HUMANA_HPP
+
 #include <iostream>
 #include <string>
+#include "Weapon.hpp"
 
-void	toupper(char *c)
-{
-	if (*c >= 97 && *c <= 122)
-		*c -= 32;
-}
+/*
+	pointer can be set NULL and left on constructing
+*/
+class HumanA {
+	private:
+		std::string name;
+		Weapon		*weapon;
+	public:
+		HumanA(std::string name, Weapon &weapon);
+		~HumanA();
+		void attack( void );
+};
 
-int	main(int argc, char *argv[])
-{
-	std::string str;
 
-	if (argc == 1)
-	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
-		return 0;
-	}
-	for (int i = 1; i < argc; i++)
-	{
-		str = argv[i];
-		for (size_t j = 0; j < str.length(); j++)
-		{
-			toupper(&argv[i][j]);
-		}
-		std::cout << argv[i];
-	}
-	std::cout << std::endl;
-
-	return 0;
-}
+#endif

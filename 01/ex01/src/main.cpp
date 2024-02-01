@@ -1,43 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 10:18:26 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/29 10:18:28 by rverhoev         ###   ########.fr       */
+/*   Created: 2024/01/29 13:23:01 by rverhoev          #+#    #+#             */
+/*   Updated: 2024/01/31 15:10:52 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <string>
 
-void	toupper(char *c)
-{
-	if (*c >= 97 && *c <= 122)
-		*c -= 32;
+#include "Zombie.hpp"
+
+int main() {
+
+  Zombie* ptr = zombieHorde(4, "Jack");
+
+  for (int i = 0; i < 4; i++)
+    ptr[i].announce();
+
+  delete[] ptr;
+
+  return 0;
 }
 
-int	main(int argc, char *argv[])
-{
-	std::string str;
-
-	if (argc == 1)
-	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
-		return 0;
-	}
-	for (int i = 1; i < argc; i++)
-	{
-		str = argv[i];
-		for (size_t j = 0; j < str.length(); j++)
-		{
-			toupper(&argv[i][j]);
-		}
-		std::cout << argv[i];
-	}
-	std::cout << std::endl;
-
-	return 0;
-}
+//Person person1("Rajat");
+//Person person2 = person1
+// --- this copies the object for a new object. they are identical in attributesZ
+// --- but not the same object.
+// --- however with pointers this is otherwize

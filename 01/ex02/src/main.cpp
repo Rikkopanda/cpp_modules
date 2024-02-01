@@ -5,40 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 10:18:39 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/29 10:18:40 by rverhoev         ###   ########.fr       */
+/*   Created: 2024/01/29 13:23:01 by rverhoev          #+#    #+#             */
+/*   Updated: 2024/01/31 15:03:23 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <string>
 
-#include "PhoneBook.hpp"
-#include "Contacts.hpp"
-
-int	main(void)
+int main()
 {
-	std::string 			input;
-	PhoneBook 	boek;
+  std::string hi_brain= "HI THIS IS BRAIN";
+  std::string *stringPTR = &hi_brain;
+  std::string &stringREF = hi_brain;
 
-	while (1)
-	{
-		std::cout << "enter command:" << std::endl;
-		std::cin >> input;
-		if (input.compare("") == 0 || std::cin.eof())
-			break;
-		if (input.compare("ADD") == 0)
-		{
-			if (boek.add() == -1)
-				return (-1);
-		}
-		if (input.compare("SEARCH") == 0)
-		{
-			if (boek.search() == -1)
-				return (-1);
-		}
-		else if (input.compare("EXIT") == 0)
-			break;
-	}
-	return 0;
+  std::cout << &hi_brain << std::endl;
+  std::cout << stringPTR << std::endl;
+  std::cout << &stringREF << std::endl;
+
+  std::cout << hi_brain << std::endl;
+  std::cout << *stringPTR << std::endl;
+  std::cout << stringREF << std::endl;
+
+  return 0;
 }
+
+
+//int	main(int argc, char *argv[])
+//{
+
+
+//	return 0;
+//}

@@ -1,43 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   megaphone.cpp                                      :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 10:18:26 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/29 10:18:28 by rverhoev         ###   ########.fr       */
+/*   Created: 2024/01/29 18:11:09 by rverhoev          #+#    #+#             */
+/*   Updated: 2024/01/31 15:10:29 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
 #include <iostream>
 #include <string>
 
-void	toupper(char *c)
-{
-	if (*c >= 97 && *c <= 122)
-		*c -= 32;
-}
+class Zombie {
+  private:
+    std::string name;
+  public:
+    Zombie();
+    Zombie(std::string name);
+    ~Zombie();
+    void announce( void );
+    void setName(std::string name);
+};
 
-int	main(int argc, char *argv[])
-{
-	std::string str;
+Zombie* zombieHorde(int N, std::string name );
 
-	if (argc == 1)
-	{
-		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *\n";
-		return 0;
-	}
-	for (int i = 1; i < argc; i++)
-	{
-		str = argv[i];
-		for (size_t j = 0; j < str.length(); j++)
-		{
-			toupper(&argv[i][j]);
-		}
-		std::cout << argv[i];
-	}
-	std::cout << std::endl;
-
-	return 0;
-}
+#endif

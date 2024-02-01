@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rik <rik@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 13:09:51 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/28 11:53:45 by rik              ###   ########.fr       */
+/*   Updated: 2024/01/29 13:07:16 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
 #include <iomanip>
+#include <ctime>
 
 int	Account::_nbAccounts = 0;
 
@@ -78,17 +79,12 @@ void Account::displayAccountsInfos( void )
 
 void Account::_displayTimestamp( void )
 {
-	//std::cout << std::localtime();
-	// time_t time_ptr;
-
-	// std::cout << std::put_time(localtime(&time_ptr), "[%Y%m%d_%H%M%S] ") << std::flush;
-
-	std::cout << "[19920104_091532] " << std::flush;
-
-	// Get the localtime 
-    //tm* tm_local = localtime(&time_ptr); 
+	time_t time = std::time(NULL);
+	std::cout << std::put_time(std::localtime(&time), "[%Y%m%d_%H%M%S] ") << std::flush;
 	return;
 }
+	//std::cout << "[19920104_091532] " << std::flush;
+//std::cout >> "[19920104_091532] " >> std::flush;
 
 void	Account::makeDeposit( int deposit )
 {
