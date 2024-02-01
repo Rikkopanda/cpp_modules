@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contacts.cpp                                       :+:      :+:    :+:   */
+/*   Contacts.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 18:30:28 by rik               #+#    #+#             */
-/*   Updated: 2024/01/27 11:33:15 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/29 10:06:35 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "contacts.hpp"
+#include "Contacts.hpp"
 #include "stdlib.h"
 
 void Contact::print_preview(int contact_nbr)
@@ -53,6 +53,29 @@ void print_field(std::string str)
 	std::cout << print_str;
 }
 
+/*
+getline reads untill newline
+if input is all spaces, try again.
+
+______________
+if you want to handle crtl-d to make it
+request again for input(empty str) or storing (non-empty str)
+
+#include <stdio.h>
+if (std::cin.eof() && str == "")
+{
+	clearerr(stdin);
+	std::cin.clear()
+	user_input(....);
+	return (0);
+}
+if (std::cin.eof())
+{
+
+	clearerr(stdin);
+	std::cin.clear();
+}
+*/
 int user_input(std::string prompt_text, std::string *dest)
 {
 	std::string str;
@@ -66,24 +89,29 @@ int user_input(std::string prompt_text, std::string *dest)
 		if (str != "")
 			break;
 	}
+	if (std::cin.eof())
+		return (-1);
 	std::cin.clear();
 	if (is_all_spaces(str))
 	{
 		std::cout << "ERROR: fields cant be empty" << std::endl;
 		std::cin.clear();	
-		user_input(prompt_text, dest);
+		if (user_input(prompt_text, dest) == -1)
+			return (-1);
 	}
 	return (0);
 }
+//std::cout << "ctrl-d pressed" << std::endl
 
-void user_input_phone_number(std::string *phone_number, std::string *first_name)
+int user_input_phone_number(std::string *phone_number, std::string *first_name)
 {
 	std::string prompt_text;
 
 	prompt_text = "enter" + *first_name + "'s " + "phone number";
 	while (1)
 	{
-		user_input(prompt_text, phone_number);
+		if (user_input(prompt_text, phone_number) == -1)
+			return (-1);
 		if (!(is_all_num(*phone_number) && (*phone_number).length() > 2 && (*phone_number).length() < 14))
 		{
 			std::cout << "ERROR: phone number can contain only digits and must be between 3 and 13 digits" << std::endl;
@@ -91,25 +119,30 @@ void user_input_phone_number(std::string *phone_number, std::string *first_name)
 		else
 			break;
 	}
+	return (0);
 }
 
-void Contact::input_data(int i)
+int Contact::input_data(int i)
 {
 	std::string prompt_text;
 
 	if (user_input("enter first name", &first_name) == -1)
-		return;
-	prompt_text = "enter" + first_name + "'s " + "last name";
-	user_input(prompt_text, &last_name);
-	prompt_text = "enter" + first_name + "'s " + "nick name";
-	user_input(prompt_text, &nick_name);
-	user_input_phone_number(&phone_number, &first_name);
-	prompt_text = "enter" + first_name + "'s " + "darkest secret";
-	user_input(prompt_text, &darkest_secret);
+		return (-1);
+	prompt_text = "enter " + first_name + "'s " + "last name";
+	if (user_input(prompt_text, &last_name) == -1)
+		return (-1);
+	prompt_text = "enter " + first_name + "'s " + "nick name";
+	if (user_input(prompt_text, &nick_name) == -1)
+		return (-1);
+	if (user_input_phone_number(&phone_number, &first_name) == -1)
+		return (-1);
+	prompt_text = "enter " + first_name + "'s " + "darkest secret";
+	if (user_input(prompt_text, &darkest_secret) == -1)
+		return (-1);
 
 	Contact::added = 1;
-	std::cout << Contact::first_name;
-	std::cout << first_name << "succesfully added contact " << i + 1 << "/" << "8\n";
+	std::cout << "succesfully added contact " << i + 1 << "/" << "8\n";
+	return (0);
 }
 // check if field is empty still, maybe char array
 

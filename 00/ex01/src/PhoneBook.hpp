@@ -4,16 +4,14 @@
 #include <iostream>
 #include <string>
 
-#include "contacts.hpp"
-// #include "phone_book.cpp"
-// #include "helper_functions.cpp"
+#include "Contacts.hpp"
 
 class PhoneBook {
 	private:
 		Contact pub_contacts[8];
 	public:
-		void add();
-		void search();
+		int add();
+		int search();
 		PhoneBook();
 		~PhoneBook();
 };

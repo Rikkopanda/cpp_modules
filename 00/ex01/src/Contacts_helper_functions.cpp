@@ -6,11 +6,11 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/27 11:14:42 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/01/27 11:35:02 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/01/29 08:24:40 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "contacts.hpp"
+#include "Contacts.hpp"
 
 void insert_str_in_array(std::string *insert_str, std::string *str, int start, int end, int trunc)
 {

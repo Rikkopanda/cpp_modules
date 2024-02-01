@@ -1,20 +1,10 @@
 #include <iostream>
-#include <string>     // std::char_traits
+#include <string>
 
-void	ft_toupper(char *c)
+void	toupper(char *c)
 {
 	if (*c >= 97 && *c <= 122)
 		*c -= 32;
-}
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
 }
 
 int	main(int argc, char *argv[])
@@ -31,11 +21,11 @@ int	main(int argc, char *argv[])
 		str = argv[i];
 		for (size_t j = 0; j < str.length(); j++)
 		{
-			ft_toupper(&argv[i][j]);
+			toupper(&argv[i][j]);
 		}
 		std::cout << argv[i];
 	}
-	std::cout << "\n";
+	std::cout << std::endl;
 
 	return 0;
 }

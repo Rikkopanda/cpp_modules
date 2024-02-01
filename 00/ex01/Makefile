@@ -4,13 +4,13 @@ SRCDIR = src/
 OBJDIR = obj/
 
 SRCS = $(addprefix $(SRCDIR),main.cpp \
-	helper_functions.cpp \
-	contacts_helper_functions.cpp \
-	phone_book.cpp \
-	contacts.cpp)
+	Contacts_helper_functions.cpp \
+	PhoneBook.cpp \
+	Contacts.cpp \
+	strings_f.cpp)
 
 OBJS = $(addprefix $(OBJDIR), $(notdir $(SRCS:.cpp=.o)))
-EXE = phone_book
+EXE = open_phonebook
 FLAGS = -Wall -Werror -Wextra \
 	-std=c++98
 

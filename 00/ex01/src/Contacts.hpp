@@ -17,7 +17,7 @@ class Contact {
 	public:
 		int	added;
 		Contact();
-		void input_data(int i);
+		int input_data(int i);
 		std::string get_name();
 		void set_fields_null();
 		void print_preview(int contact_nbr);

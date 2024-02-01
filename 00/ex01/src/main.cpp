@@ -1,10 +1,10 @@
 #include <iostream>
 #include <string>
 
-#include "phone_book.hpp"
-#include "contacts.hpp"
+#include "PhoneBook.hpp"
+#include "Contacts.hpp"
 
-int	main(int argc, char *argv[])
+int	main(void)
 {
 	std::string 			input;
 	PhoneBook 	boek;
@@ -13,12 +13,18 @@ int	main(int argc, char *argv[])
 	{
 		std::cout << "enter command:" << std::endl;
 		std::cin >> input;
-		if (input.compare("") == 0)
+		if (input.compare("") == 0 || std::cin.eof())
 			break;
 		if (input.compare("ADD") == 0)
-			boek.add();
+		{
+			if (boek.add() == -1)
+				return (-1);
+		}
 		if (input.compare("SEARCH") == 0)
-			boek.search();
+		{
+			if (boek.search() == -1)
+				return (-1);
+		}
 		else if (input.compare("EXIT") == 0)
 			break;
 	}

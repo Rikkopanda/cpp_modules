@@ -20,6 +20,6 @@ clean:
 	rm -f $(OBJS)
 
 fclean:	clean
-	rm (EXE)
+	rm $(EXE)
 
 re:	clean all
