@@ -3,65 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/02/01 16:31:15 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/06/18 11:54:43 by rikverhoeve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#include "Bureaucrat.hpp"
 #include <iostream>
 #include <string>
 
 
-void set_level(std::string user_input, const std::string level_arr[4], int *level_case)
+int main(void)
 {
-	*level_case = -1;
+	Bureaucrat Obama("Obama", -12);
 
-	for (int i = 0; i < 4; i++)
+	try
 	{
-		if (user_input.compare(0, user_input.length(), level_arr[i]) == 0)
-		{
-			*level_case = i;
-			break;
-		}
-	}
-}
-
-int main(int argc, char *argv[])
-{
-	Harl				h;
-	std::string 		user_input;
-	const std::string 	level_arr[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	int					level_case;
-
-	if (argc != 2)
-		return (std::cout << "[ Probably complaining about insignificant problems ]" << std::endl, 1);
-
-	user_input = argv[1];
-
-	set_level(user_input, level_arr, &level_case);
-
-	switch (level_case)
+		Obama.IncrementGrade();
+	} catch (const::Bureaucrat::GradeTooHighException &exc) // pass by reference so its not copied
 	{
-		case -1:
-			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-			break;
-		case 0:
-			h.complain("DEBUG");
-			[[fallthrough]];
-		case 1:
-			h.complain("INFO");
-			[[fallthrough]];
-			break;
-		case 2:
-			h.complain("WARNING");
-			[[fallthrough]];
-			break;
-		case 3:
-			h.complain("ERROR");
-			break;
+		std::cerr << "caught exception: " << exc.what() << std::endl;
 	}
-	return 0;
+	std::cout << &Obama << std::endl;
 }

@@ -11,7 +11,7 @@ SRCS = $(addprefix $(SRCDIR), \
 OBJS = $(addprefix $(OBJDIR), $(notdir $(SRCS:.cpp=.o)))
 EXE = Bureaucrat
 FLAGS = -Wall -Werror -Wextra \
-	-std=c++98 -fms-extensions
+	-std=c++11
 
 .PHONY: all clean fclean re bonus
 
