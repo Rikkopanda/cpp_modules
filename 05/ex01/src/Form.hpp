@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <exception>
+#include "Bureaucrat.hpp"
 
 class Form {
 	private:
@@ -13,15 +14,14 @@ class Form {
 		const int	grade_sign;
 		const int	grade_to_excecute;
 	public:
-		Form(std::string _name) : name(_name)
+		Form(std::string _name, int _grade_sign, int _grade_to_excecute) : name(_name), grade_sign(_grade_sign), grade_to_excecute(_grade_to_excecute)
 		{
-			
+			this->signed_status = 0;
 		}
-		void		initStatus(bool &_status);
-		std::string	getName();
-		int			getStatus();
-		void		beSigned();
-
+		~Form(void);
+		std::string	getName() const;
+		int			getStatus() const;
+		void		beSigned(Bureaucrat &bureaucrat);
 		class GradeTooHighException : public std::exception
 		{
 			private:
@@ -40,8 +40,6 @@ class Form {
 				const char *what() const noexcept override;
 				// ~GradeTooLowException(void);
 		};
-
-
 }
 
 std::ostream& operator<<(std::ostream &out, Form *form);
