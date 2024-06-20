@@ -7,6 +7,7 @@ CC = c++
 SRCS = $(addprefix $(SRCDIR), \
 		Bureaucrat.cpp \
 		Form.cpp \
+		ShrubberyCreationForm.cpp \
 		main.cpp)
 
 OBJS = $(addprefix $(OBJDIR), $(notdir $(SRCS:.cpp=.o)))

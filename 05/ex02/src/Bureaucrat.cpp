@@ -6,7 +6,7 @@
 /*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:24:11 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/20 09:04:03 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/06/20 09:08:15 by rikverhoeve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void Bureaucrat::IncrementGrade()
 		this->grade--;
 }
 
-void Bureaucrat::signForm(Form *form) const
+void Bureaucrat::signForm(AForm *form) const
 {
 	if (form->getStatus() == true)
 		std::cout << "Form " << form->getName() << " was already signed " << std::endl;

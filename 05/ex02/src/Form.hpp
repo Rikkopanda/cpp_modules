@@ -7,21 +7,17 @@
 #include <exception>
 #include "Bureaucrat.hpp"
 
-class Form {
-	private:
-		const std::string name;
-		const int	grade_sign;
-		const int	grade_to_excecute;
-		bool		signed_status;
+class AForm {
 	public:
-		Form(void);
-		Form(std::string _name, int _grade_sign, int _grade_to_excecute);
-		~Form(void);
-		std::string	getName() const;
-		bool	getStatus() const;
-		void	beSigned(Bureaucrat &bureaucrat);
-		int		getGradeToSign() const;
-		int		getGradeToExcecute() const;
+		AForm(void);
+		virtual ~AForm(void);
+		virtual std::string	getName() const = 0;
+		virtual bool	getStatus() const = 0;
+		virtual void	beSigned(Bureaucrat &bureaucrat) = 0;
+		virtual int		getGradeToSign() const = 0;
+		virtual int		getGradeToExcecute() const = 0;
+		virtual void 	execute(Bureaucrat const & executor) const = 0;
+		void 			execute_poly(Bureaucrat const &bureaucrat, AForm const *form) const;
 		class GradeTooHighException : public std::exception
 		{
 			private:
@@ -40,7 +36,8 @@ class Form {
 		};
 };
 
-std::ostream& operator<<(std::ostream &out, Form *form);
+std::ostream& operator<<(std::ostream &out, AForm *form);
+
 
 
 #endif
