@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
+/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/20 09:19:25 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/06/20 14:37:39 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "text_colors.hpp"
 #include "Form.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "Bureaucrat.hpp"
@@ -18,13 +19,20 @@
 
 int main(void)
 {
-	Bureaucrat	Obama("Obama", 5);
+	Bureaucrat	Obama("Obama", 100);
 	AForm		*law_proposal;
 	ShrubberyCreationForm form("bill 56");
+
+	ShrubberyCreationForm formcpy;
+	std::cout << BLUE;
+	Bureaucrat	obamacpy;
+
 	law_proposal = &form;
+	obamacpy = Obama;
+	formcpy = form;
+	std::cout << RESET;
 
 	std::cout << &law_proposal << std::endl;
-
 	try
 	{
 		Obama.IncrementGrade();
@@ -43,6 +51,15 @@ int main(void)
 	Obama.signForm(law_proposal);
 	try{
 		law_proposal->execute(Obama);
+	} catch (const::AForm::GradeTooHighException &exc)
+	{
+		std::cerr << "Execute caught exception: " << exc.what() << std::endl;
+	} catch (const::AForm::GradeTooLowException &exc)
+	{
+		std::cerr << "Execute caught exception: " << exc.what() << std::endl;
+	}
+	try{
+		Obama.executeForm(*law_proposal);
 	} catch (const::AForm::GradeTooHighException &exc)
 	{
 		std::cerr << "Execute caught exception: " << exc.what() << std::endl;

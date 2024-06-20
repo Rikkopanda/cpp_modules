@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
+/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:24:11 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/20 09:08:15 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/06/20 12:24:06 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 Bureaucrat::Bureaucrat(): name("Default name"), grade(1)
 {
-	std::cout << "Bureaucrat "<< name << " has been constructed with grade: " << grade << std::endl;
+	std::cout << "Bureaucrat "<< name << " has been default constructed with grade: " << grade << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string _name, int _grade): name(_name)
@@ -29,7 +29,18 @@ Bureaucrat::Bureaucrat(std::string _name, int _grade): name(_name)
 		this->grade = 150;
 		std::cerr << "caught exception: " << exc.what() << std::endl;
 	}
-	std::cout << "Bureaucrat "<< name << " has been constructed with grade: " << grade << std::endl;
+	std::cout << "Bureaucrat "<< name << " has been parameterized constructed with grade: " << grade << std::endl;
+}
+
+Bureaucrat::Bureaucrat(const Bureaucrat &src) : name(src.getName()), grade(src.getGrade())
+{
+	std::cout << "Bureaucrat " << name << " has been copy constructed with grade: "<< grade << std::endl;
+}
+
+Bureaucrat& Bureaucrat::operator=(Bureaucrat &src)
+{
+	this->grade = src.getGrade();
+	return *this;
 }
 
 Bureaucrat::~Bureaucrat(void)
@@ -115,4 +126,11 @@ std::ostream& operator<<(std::ostream &out, Bureaucrat *bureaucrat)
 {
 	std::cout << bureaucrat->getName() << " bureaucrat grade " << bureaucrat->getGrade() << std::flush;
 	return out;
+}
+
+void	Bureaucrat::executeForm(AForm const & form)
+{
+	std::cout << "Bureaucrat " << this->name << " is trying to execute " << form.getName() << std::endl;
+	form.execute_poly((const Bureaucrat)*this, &form);
+	std::cout << "Bureaucrat " << this->name << " executed " << form.getName() << std::endl;
 }

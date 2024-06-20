@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ShrubberyCreationForm.cpp                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
+/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:37:40 by rikverhoeve       #+#    #+#             */
-/*   Updated: 2024/06/20 10:59:12 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/06/20 13:01:11 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,33 @@
 #include "ShrubberyCreationForm.hpp"
 #include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm(void): name("default name"), grade_sign(145), grade_to_excecute(137), signed_status(false)
+ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("default name", 145, 137, false)
 {
 	std::cout << "default constructor ShrubberyCreationForm, initialize " << name << "'s grade_sign to " << grade_sign << ", grade_to_excecute to " << grade_to_excecute << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string _name) : name(_name), grade_sign(145),
-grade_to_excecute(137), signed_status(false)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string _name) : AForm(_name, 145, 137, false)
 {
 	std::cout << "parameter constructor ShrubberyCreationForm, initialize " << name << "'s grade_sign to " << grade_sign << ", grade_to_excecute to " << grade_to_excecute << std::endl;
 }
 
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &src) : AForm(src)
+{
+	std::cerr << "copy constructed " <<  this->name <<  ", a ShrubberyCreationForm" << std::endl;
+}
+
+/*
+	can only copy signed_status, because this is not a const
+*/
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(ShrubberyCreationForm &src)
+{
+	this->signed_status = src.getStatus();
+	return *this;
+}
+
 ShrubberyCreationForm::~ShrubberyCreationForm(void)
 {
-	std::cerr << "ShrubberyCreationForm has been destructed" << std::endl;
+	std::cerr << this->name << " ShrubberyCreationForm " <<  this->name <<  " has been destructed" << std::endl;
 }
 
 std::string	ShrubberyCreationForm::getName() const
@@ -53,14 +66,50 @@ int		ShrubberyCreationForm::getGradeToExcecute() const
 
 void		ShrubberyCreationForm::execute(Bureaucrat const &bureaucrat) const
 {
-	(void)bureaucrat;
 	std::cerr << "ShrubberyCreationForm excecuting.... " << std::endl;
 	execute_poly(bureaucrat, this);
 
-	std::String 
+	std::string small_ascii_tree = R"(       _-_
+						/~~   ~~\
+					/~~         ~~\
+					{               }
+					\  _-     -_  /
+					~  \\ //  ~
+					_- -   | | _- _
+					_ -  | |   -_
+						// \\)";
+	// std::ifstream myfile;
+
+	std::string big_ascii_tree = R"(
+				.        +          .      .          .
+		.            _        .                    .
+	,              /;-._,-.____        ,-----.__
+	((        .    (_:#::_.:::. `-._   /:, /-._, `._,
+	`                 \   _|`"=:_::.`.);  \ __/ /
+						,    `./  \:. `.   )==-'  .
+		.      ., ,-=-.  ,\, +#./`   \:.  / /           .
+	.           \/:/`-' , ,\ '` ` `   ): , /_  -o
+		.    /:+- - + +- : :- + + -:'  /(o-) \)     .
+	.      ,=':  \    ` `/` ' , , ,:' `'--".--"---._/`7
+	`.   (    \: \,-._` ` + '\, ,"   _,--._,---":.__/
+				\:  `  X` _| _,\/'   .-'
+	.               ":._:`\____  /:'  /      .           .
+						\::.  :\/:'  /              +
+	.                 `.:.  /:'  }      .
+			.           ):_(:;   \           .
+						/:. _/ ,  |
+					. (|::.     ,`                  .
+		.                |::.    {\
+						|::.\  \ `.
+						|:::(\    |
+				O       |:::/{ }  |                  (o
+				)  ___/#\::`/ (O "==._____   O, (O  /`
+			~~~w/w~"~~,\` `:/,-(~`"~~~~~~~~"~o~\~/~w|/~
+	dew   ~~~~~~~~~~~~~~~~~~~~~~~\\W~~~~~~~~~~~~\|/~~
+	)";
 
 	std::ofstream NewFile(this->name + "_shrubbery");
-	NewFile << "ascii tree";
+	NewFile << small_ascii_tree + "\n" + big_ascii_tree;
 	NewFile.close();
 }
 

@@ -6,13 +6,12 @@ class AForm;
 
 class ShrubberyCreationForm : public AForm {
 	private:
-		const std::string 	name;
-		const int			grade_sign;
-		const int			grade_to_excecute;
-		bool				signed_status;
+		const std::string 	target;
 	public:
 		ShrubberyCreationForm(void);
 		ShrubberyCreationForm(std::string _name);
+		ShrubberyCreationForm(const ShrubberyCreationForm &src);
+		ShrubberyCreationForm& operator=(ShrubberyCreationForm &src);
 		~ShrubberyCreationForm(void);
 		std::string	getName() const override;
 
