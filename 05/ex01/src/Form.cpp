@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Form.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
+/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:37:40 by rikverhoeve       #+#    #+#             */
-/*   Updated: 2024/06/19 11:45:11 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/06/22 12:09:38 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ grade_to_excecute(_grade_to_excecute), signed_status(false)
 
 Form::~Form(void)
 {
-	std::cerr << "Form has been destructed" << std::endl;
+	std::cout << "Form has been destructed" << std::endl;
 }
 
 std::string	Form::getName() const
@@ -58,13 +58,13 @@ void	Form::beSigned(Bureaucrat &bureaucrat)
 		if (bureaucrat.getGrade() > this->grade_sign || bureaucrat.getGrade() > this->grade_to_excecute)
 			throw GradeTooLowException("tried to sign, but bureaucrat's grade is 'lower' than grade_to_sign");
 		this->signed_status = true;
-		std::cerr << "bill has been signed by " << bureaucrat.getName() << std::endl;
+		std::cout << "bill has been signed by " << bureaucrat.getName() << std::endl;
 	} catch (GradeTooHighException &exc)
 	{
-		std::cerr << "caught exception: " << exc.what() << std::endl;
+		std::cout << "caught exception: " << exc.what() << std::endl;
 	} catch (GradeTooLowException &exc)
 	{
-		std::cerr << "caught exception: " << exc.what() << std::endl;
+		std::cout << "caught exception: " << exc.what() << std::endl;
 	}
 }
 

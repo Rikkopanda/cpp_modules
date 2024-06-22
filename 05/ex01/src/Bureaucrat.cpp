@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
+/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:24:11 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/20 09:04:03 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/06/22 12:09:38 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ Bureaucrat::Bureaucrat(std::string _name, int _grade): name(_name)
 		initGrade(_grade);
 	} catch (const::Bureaucrat::GradeTooHighException &exc){
 		this->grade = 1;
-		std::cerr << "caught exception: " << exc.what() << std::endl;
+		std::cout << "caught exception: " << exc.what() << std::endl;
 	} catch (const::Bureaucrat::GradeTooLowException &exc){
 		this->grade = 150;
-		std::cerr << "caught exception: " << exc.what() << std::endl;
+		std::cout << "caught exception: " << exc.what() << std::endl;
 	}
 	std::cout << "Bureaucrat "<< name << " has been constructed with grade: " << grade << std::endl;
 }

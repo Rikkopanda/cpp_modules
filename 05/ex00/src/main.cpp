@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
+/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/18 11:54:43 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/06/22 12:09:38 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int main(void)
 		Obama.IncrementGrade();
 	} catch (const::Bureaucrat::GradeTooHighException &exc) // pass by reference so its not copied
 	{
-		std::cerr << "caught exception: " << exc.what() << std::endl;
+		std::cout << "caught exception: " << exc.what() << std::endl;
 	}
 	std::cout << &Obama << std::endl;
 }

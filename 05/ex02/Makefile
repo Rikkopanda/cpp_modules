@@ -6,7 +6,8 @@ CC = c++
 
 SRCS = $(addprefix $(SRCDIR), \
 		Bureaucrat.cpp \
-		Form.cpp \
+		AForm.cpp \
+		RobotomyRequestForm.cpp \
 		ShrubberyCreationForm.cpp \
 		main.cpp)
 

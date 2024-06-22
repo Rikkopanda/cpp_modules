@@ -1,6 +1,6 @@
 
-#ifndef FORM_HPP
-# define FORM_HPP
+#ifndef AFORM_HPP
+# define AFORM_HPP
 
 #include <iostream>
 #include <string>
@@ -15,15 +15,15 @@ class AForm {
 		bool				signed_status;
 	public:
 		AForm(void);
-		AForm(std::string _name, int grade_to_sign, int signed_status, int grade_to_execute);
+		AForm(std::string _name, int grade_to_sign, int grade_to_execute, int signed_status);
 		AForm(const AForm &src);
 		AForm& operator=(AForm &src);
 		virtual ~AForm(void);
-		virtual std::string	getName() const;
-		virtual bool	getStatus() const;
-		virtual void	beSigned(Bureaucrat &bureaucrat);
-		virtual int		getGradeToSign() const;
-		virtual int		getGradeToExcecute() const;
+		std::string	getName() const;
+		bool	getStatus() const;
+		void	beSigned(Bureaucrat &bureaucrat);
+		int		getGradeToSign() const;
+		int		getGradeToExcecute() const;
 		virtual void 	execute(Bureaucrat const & executor) const = 0;
 		void 			execute_poly(Bureaucrat const &bureaucrat, AForm const *form) const;
 		class GradeTooHighException : public std::exception

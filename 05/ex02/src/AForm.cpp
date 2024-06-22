@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
+/*   AForm.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:37:40 by rikverhoeve       #+#    #+#             */
-/*   Updated: 2024/06/20 13:06:56 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/06/22 12:09:38 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include <iostream>
 
 AForm::AForm(void): name("default name"), grade_sign(1),
@@ -28,18 +28,18 @@ AForm::AForm(void): name("default name"), grade_sign(1),
 AForm::AForm(AForm const &src) : name(src.getName()), grade_sign(src.getGradeToSign()),
 	grade_to_excecute(src.getGradeToExcecute()), signed_status(src.getStatus())
 {
-	std::cerr << "AForm copy constructor called, made: " << this->name << std::endl;
+	std::cout << "AForm copy constructor called, made: " << this->name << std::endl;
 }
 
-AForm::AForm(std::string _name, int grade_to_sign, int signed_status, int grade_to_execute) : name(_name), grade_sign(grade_to_sign),
+AForm::AForm(std::string _name, int grade_to_sign, int grade_to_execute, int signed_status) : name(_name), grade_sign(grade_to_sign),
 	grade_to_excecute(grade_to_execute), signed_status(signed_status)
 {
-	std::cerr << "AForm parameter constructor called, made: " << this->name << std::endl;
+	std::cout << "AForm parameter constructor called, made: " << this->name << std::endl;
 }
 
 AForm::~AForm(void)
 {
-	std::cerr << "Form has been destructed" << std::endl;
+	std::cout << "Form " << name << " has been destructed" << std::endl;
 }
 
 
@@ -69,27 +69,29 @@ int		AForm::getGradeToExcecute() const
 void	AForm::beSigned(Bureaucrat &bureaucrat)
 {
 	try{
-		if (bureaucrat.getGrade() > this->grade_sign || bureaucrat.getGrade() > this->grade_to_excecute)
+		if (bureaucrat.getGrade() > this->grade_sign)
 			throw GradeTooLowException("tried to sign, but bureaucrat's grade is 'lower' than grade_to_sign");
+		else if (bureaucrat.getGrade() > this->grade_to_excecute)
+			throw GradeTooLowException("tried to sign, but bureaucrat's grade is 'lower' than grade_to_excecute");
 		this->signed_status = true;
-		std::cerr << "bill has been signed by " << bureaucrat.getName() << std::endl;
+		std::cout << "bill has been signed by " << bureaucrat.getName() << std::endl;
 	} catch (GradeTooHighException &exc)
 	{
-		std::cerr << "caught exception: " << exc.what() << std::endl;
+		std::cout << "caught exception: " << exc.what() << std::endl;
 	} catch (GradeTooLowException &exc)
 	{
-		std::cerr << "caught exception: " << exc.what() << std::endl;
+		std::cout << "caught exception: " << exc.what() << std::endl;
 	}
 }
 
 void		AForm::execute_poly(Bureaucrat const &bureaucrat, AForm const *form) const
 {
 	if (bureaucrat.getGrade() > form->getGradeToSign())
-		throw GradeTooLowException("tried to sign, but bureaucrat's grade is 'lower' than grade_to_sign");
+		throw GradeTooLowException("tried to execute, but bureaucrat's grade is 'lower' than grade_to_sign");
 	else if (bureaucrat.getGrade() > form->getGradeToExcecute())
-		throw GradeTooLowException("tried to sign, but bureaucrat's grade is 'lower' than grade_to_excecute");
+		throw GradeTooLowException("tried to execute, but bureaucrat's grade is 'lower' than grade_to_excecute");
 	else if (this->getStatus() == false)
-		throw FormIsNotToBeSignedException("tried to sign, but form's sign permission status is false");
+		throw FormIsNotToBeSignedException("tried to execute, but form's sign permission status is false");
 }
 
 AForm::GradeTooHighException::GradeTooHighException(const char *msg) : message(msg)
