@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/22 12:09:38 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/06/24 17:53:19 by rikverhoeve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,15 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 #include <string>
+
+typedef AForm *(* t_func_ptr)(std::string form_type_request_name, std::string target);
+
+typedef struct s_func_table
+{
+	t_func_ptr	fptr;
+	std::string matching_str;
+} t_func_table;
+
 
 int main(void)
 {
@@ -53,10 +62,7 @@ int main(void)
 		std::cout << "Execute caught exception: " << exc.what() << std::endl;
 	}
 
-
-
 	std::cout << RESET;
-
 
 	try
 	{
