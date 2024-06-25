@@ -6,7 +6,7 @@
 /*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:24:11 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/25 12:57:36 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/06/25 13:23:47 by rikverhoeve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,26 +44,35 @@ void print_scalar(float scalar, const char *cstr)
 		std::cout << "float: impossible" << std::endl;
 		return ;
 	}
-	// std::cout << "precision: " << std::setprecision(8) << std::endl;
-	
+	std::cout << "________\nFIRST float: " << scalar << "f" << std::endl;
+
+	// std::cout << "precision: " << std::cout.precision(8) << std::endl;
+	// std::scientific(std::cout);
+
+	if (std::floor(scalar) == scalar)
+	{
+		std::fixed(std::cout);
+		std::cout.precision(1);
+	}
+	// std::cout.unsetf(std::ios::floatfield);
+
 	std::cout << "________\nfloat: " << scalar << "f" << std::endl;
-
 	// std::cout.unsetf(std::ios::floatfield);
-	std::cout << std::setprecision(8);
-	std::cout << "precision: " << std::cout.precision() << std::endl;
-	std::cout << "float: " << scalar << "f" << std::endl;
-
-	std::fixed(std::cout);
-	std::cout << std::setprecision(8);
-
-	std::cout << "precision: " << std::cout.precision() << std::endl;
-	std::cout << "float: " << scalar << "f" << std::endl;
+	// std::cout << std::setprecision(8);
+	// std::cout << "precision: " << std::cout.precision() << std::endl;
+	// std::cout << "float: " << scalar << "f" << std::endl;
+	// std::fixed(std::cout);
+	// std::cout << std::setprecision(8);
+	// std::cout << "precision: " << std::cout.precision() << std::endl;
+	// std::cout << "float: " << scalar << "f" << std::endl;
 	// std::cout.unsetf(std::ios::floatfield);
-	// std::resetiosflags(std::ios::showbase); // sets the format flag to reset value
+	std::defaultfloat(std::cout);
+	std::cout << std::setprecision(6);
+
+	// std::resetiosflags(std::ios::floatfield); // sets the format flag to reset value
 	// std::showbase(std::cout);// same as above manipulator, this gives 0x or 0 prefixes depending on set base
 	// std::noshowbase(std::cout); //unsets 
-	std::cout.unsetf(std::ios::floatfield);
-
+	// std::cout.unsetf(std::ios::floatfield);
 	std::cout << "float: " << scalar << "f" << std::endl;
 
 	// if (std::floor(scalar) == scalar)
