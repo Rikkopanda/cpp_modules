@@ -13,7 +13,7 @@ class RobotomyRequestForm : public AForm {
 		RobotomyRequestForm(const RobotomyRequestForm &src);
 		RobotomyRequestForm& operator=(RobotomyRequestForm &src);
 		~RobotomyRequestForm(void);
-		const std::string getTarget(void) const;
+		const std::string getTarget(void) const override;
 
 		void	execute(Bureaucrat const & executor) const override;
 };

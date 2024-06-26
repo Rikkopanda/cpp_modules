@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:37:40 by rikverhoeve       #+#    #+#             */
-/*   Updated: 2024/06/22 12:09:38 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/06/22 12:34:56 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,11 @@ AForm::GradeTooLowException::GradeTooLowException(const char *msg) : message(msg
 	std::cout << "GradeTooLowException object made with parameter constructor" << std::endl;
 }
 
+const std::string AForm::getTarget(void) const
+{
+	return "AForm doesn't have target";
+}
+
 // ~GradeTooLowException(void);
 const char *AForm::GradeTooLowException::what() const noexcept
 {
@@ -127,9 +132,9 @@ const char *AForm::FormIsNotToBeSignedException::what() const noexcept
 	return message.c_str();
 } //noexcept means the function does not throw any exceptions
 
-// std::ostream& operator<<(std::ostream &out, Form *form)
-// {
-// 	std::cout << "Form: " << form->getName() << " sign status: " << form->getStatus() << " grade to excecute: " 
-// 	<< form->getGradeToExcecute() << " grade to sign: " << form->getGradeToSign() << std::flush;
-// 	return out;
-// }
+std::ostream& operator<<(std::ostream &out, AForm *form)
+{
+	std::cout << "Form: " << form->getName() << " sign status: " << form->getStatus() << " grade to excecute: " 
+	<< form->getGradeToExcecute() << " grade to sign: " << form->getGradeToSign() << " target: "<< form->getTarget() << std::flush;
+	return out;
+}

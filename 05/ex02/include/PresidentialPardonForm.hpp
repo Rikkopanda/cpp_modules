@@ -13,7 +13,7 @@ class PresidentialPardonForm : public AForm {
 		PresidentialPardonForm(const PresidentialPardonForm &src);
 		PresidentialPardonForm& operator=(PresidentialPardonForm &src);
 		~PresidentialPardonForm(void);
-		const std::string getTarget(void) const;
+		const std::string getTarget(void) const override;
 		void	execute(Bureaucrat const & executor) const override;
 };
 

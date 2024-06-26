@@ -2,6 +2,8 @@ SRCDIR = src/
 
 OBJDIR = obj/
 
+INCLUDE = -Iinclude
+
 CC = c++
 
 SRCS = $(addprefix $(SRCDIR), \

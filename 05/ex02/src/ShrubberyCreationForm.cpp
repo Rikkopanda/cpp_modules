@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:37:40 by rikverhoeve       #+#    #+#             */
-/*   Updated: 2024/06/22 12:09:38 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/06/22 12:29:35 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,9 +118,4 @@ void		ShrubberyCreationForm::execute(Bureaucrat const &bureaucrat) const
 // 	}
 // }
 
-std::ostream& operator<<(std::ostream &out, AForm *form)
-{
-	std::cout << "Form: " << form->getName() << " sign status: " << form->getStatus() << " grade to excecute: " 
-	<< form->getGradeToExcecute() << " grade to sign: " << form->getGradeToSign() << std::flush;
-	return out;
-}
+

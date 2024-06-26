@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/22 12:09:38 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/06/22 14:43:26 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "Intern.hpp"
 
 #include "Bureaucrat.hpp"
 #include <iostream>
@@ -52,11 +53,13 @@ int main(void)
 	{
 		std::cout << "Execute caught exception: " << exc.what() << std::endl;
 	}
-
-
-
 	std::cout << RESET;
+	std::cout << GREEN;
 
+	Intern stagair;
+	AForm *doorstagairgemaakt = stagair.makeForm(ROBOTOMY_REQUEST, "thuis");
+	std::cout << doorstagairgemaakt << std::endl;
+	std::cout << RESET;
 
 	try
 	{
@@ -116,5 +119,7 @@ int main(void)
 		std::cout << "Execute caught exception: " << exc.what() << std::endl;
 	}
 	std::cout << law_proposal << std::endl;
+	std::cout << &Obama << std::endl;
+
 	delete haahiahdwhiuahd;
 }

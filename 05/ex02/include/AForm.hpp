@@ -24,8 +24,9 @@ class AForm {
 		void	beSigned(Bureaucrat &bureaucrat);
 		int		getGradeToSign() const;
 		int		getGradeToExcecute() const;
-		virtual void 	execute(Bureaucrat const & executor) const = 0;
-		void 			execute_poly(Bureaucrat const &bureaucrat, AForm const *form) const;
+		virtual void 		execute(Bureaucrat const & executor) const = 0;
+		void 				execute_poly(Bureaucrat const &bureaucrat, AForm const *form) const;
+		virtual const std::string	getTarget(void) const;
 		class GradeTooHighException : public std::exception
 		{
 			private:

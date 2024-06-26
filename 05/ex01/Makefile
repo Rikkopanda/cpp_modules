@@ -2,6 +2,8 @@ SRCDIR = src/
 
 OBJDIR = obj/
 
+INCLUDE = -Iinclude
+
 CC = c++
 
 SRCS = $(addprefix $(SRCDIR), \
@@ -24,7 +26,7 @@ $(OBJDIR):
 $(EXE) : $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) -o $(EXE)
 
-$(OBJS): $(OBJDIR)%.o: $(SRCDIR)%.cpp
+$(OBJS): $(OBJDIR)%.o: $(SRCDIR)%.cpp    6
 		$(CC) $(FLAGS) -c $< -o $@
 
 clean:
