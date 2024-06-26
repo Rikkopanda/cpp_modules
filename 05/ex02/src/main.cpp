@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/22 14:43:26 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/06/26 11:23:24 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,15 @@
 #include "Bureaucrat.hpp"
 #include <iostream>
 #include <string>
+
+typedef AForm *(* t_func_ptr)(std::string form_type_request_name, std::string target);
+
+typedef struct s_func_table
+{
+	t_func_ptr	fptr;
+	std::string matching_str;
+} t_func_table;
+
 
 int main(void)
 {
@@ -53,13 +62,14 @@ int main(void)
 	{
 		std::cout << "Execute caught exception: " << exc.what() << std::endl;
 	}
+
 	std::cout << RESET;
 	std::cout << GREEN;
 
-	Intern stagair;
-	AForm *doorstagairgemaakt = stagair.makeForm(ROBOTOMY_REQUEST, "thuis");
-	std::cout << doorstagairgemaakt << std::endl;
-	std::cout << RESET;
+	// Intern stagair;
+	// AForm *doorstagairgemaakt = stagair.makeForm(ROBOTOMY_REQUEST, "thuis");
+	// std::cout << doorstagairgemaakt << std::endl;
+	// std::cout << RESET;
 
 	try
 	{

@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/29 18:11:09 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/24 18:26:57 by rikverhoeve      ###   ########.fr       */
+/*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
+/*   Updated: 2024/06/25 08:58:57 by rikverhoeve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef Harl_HPP
-# define Harl_HPP
-
+#include "ScalarConverter.hpp"
 #include <iostream>
 #include <string>
 
-class Harl {
-	private:
-		void debug( void );
-		void info( void );
-		void warning( void );
-		void error( void );  
-	public:
-		Harl(void);
-		~Harl(void);
-		void complain( std::string level );
-};
 
-#endif
+int main(int argc, char **argv)
+{
+	if (argc != 2)
+		return (std::cout << "not enough arguments" << std::endl, 0);
+	std::string test(argv[1]);
+	ScalarConverter::convert(test);
+	// std::cout << &Obama << std::endl;
+}
