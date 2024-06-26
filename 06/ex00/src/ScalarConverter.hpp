@@ -6,7 +6,7 @@
 /*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:11:09 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/25 11:25:50 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/06/26 08:53:42 by rikverhoeve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ typedef struct s_func_table
 class ScalarConverter {
 	public:
 		static bool impossible;
+		static uint8_t double_flag;
+		static uint8_t char_flag;
+		static uint8_t int_flag;
+		static uint8_t float_flag;
+
 		// void print_scalar(char scalar, const char *cstr);
 		// void print_scalar(float scalar, const char *cstr);
 		// void print_scalar(double scalar, const char *cstr);
