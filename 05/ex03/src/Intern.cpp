@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 12:49:29 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/22 14:36:45 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/06/26 11:34:42 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@
 #include "ShrubberyCreationForm.hpp"
 
 #include <iostream>
-
-#define CREATE_ROBOTOMYREQUESTFORM 0
-#define CREATE_SHRUBBERYCREATIONFORM 1
-#define CREATE_PRESIDENTIALPARDONFORM 2
-
 
 Intern::Intern(void)
 {
@@ -76,4 +71,14 @@ AForm* Intern::makeForm(std::string form_type_name, std::string target) const
 		return NULL;
 	AForm *form = formCreationTable[i].createFunc(target);
 	return form;
+}
+
+Intern::Wrong_Creation_Request_Exception::Wrong_Creation_Request_Exception(const char *msg)
+{
+	this->message = msg;
+}
+
+const char *Intern::Wrong_Creation_Request_Exception::what() const noexcept
+{
+	return message.c_str();
 }

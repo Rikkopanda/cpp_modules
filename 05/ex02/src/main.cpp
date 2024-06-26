@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/26 11:23:24 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/06/26 11:24:29 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
-#include "Intern.hpp"
+// #include "Intern.hpp"
 
 #include "Bureaucrat.hpp"
 #include <iostream>
@@ -69,7 +69,7 @@ int main(void)
 	// Intern stagair;
 	// AForm *doorstagairgemaakt = stagair.makeForm(ROBOTOMY_REQUEST, "thuis");
 	// std::cout << doorstagairgemaakt << std::endl;
-	// std::cout << RESET;
+	std::cout << RESET;
 
 	try
 	{

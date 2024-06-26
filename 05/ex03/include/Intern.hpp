@@ -46,13 +46,4 @@ class Intern{
 		};
 };
 
-Intern::Wrong_Creation_Request_Exception(const char *msg)
-{
-	mess
-}
-
-
-
-
-
 #endif
