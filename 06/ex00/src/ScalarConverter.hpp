@@ -6,7 +6,7 @@
 /*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:11:09 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/26 08:53:42 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/06/27 10:02:45 by rikverhoeve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@
 
 typedef int *(* t_func_ptr)(std::string form_type_request_name, std::string target);
 
+enum e_bitflags
+{
+	OKPRINT,
+	IMPOSSIBLE,
+	OK_FLOAT,
+	NON_DISPLAYABLE,
+	PSEUDO_LITERAL_F,
+	PSEUDO_LITERAL_D
+};
+
 typedef struct s_func_table
 {
 	t_func_ptr	fptr;
@@ -28,10 +38,12 @@ typedef struct s_func_table
 class ScalarConverter {
 	public:
 		static bool impossible;
-		static uint8_t double_flag;
-		static uint8_t char_flag;
-		static uint8_t int_flag;
-		static uint8_t float_flag;
+		static int double_flag;
+		static int char_flag;
+		static int int_flag;
+		static int float_flag;
+		static int total_flag_bitmask;
+		static std::string saved_pseudo_literal;
 
 		// void print_scalar(char scalar, const char *cstr);
 		// void print_scalar(float scalar, const char *cstr);
@@ -41,5 +53,10 @@ class ScalarConverter {
 		static void convert(std::string str_of_literal);
 };
 
+template <typename T>
+
+void print_value(T val, int flag, std::string datatype);
+int double_inf_check(std::string &str);
+int float_inf_check(std::string &str);
 
 #endif
