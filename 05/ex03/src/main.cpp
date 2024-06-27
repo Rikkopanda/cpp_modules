@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/26 11:23:02 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/06/27 13:12:29 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,44 +20,51 @@
 #include <iostream>
 #include <string>
 
+void	interntests()
+{
+	Intern stagair;
+
+	std::cout << GREEN;
+	AForm *doorstagairgemaakt = stagair.makeForm(SCHRUB_REQUEST, "thuis");
+	std::cout << doorstagairgemaakt << std::endl;
+	delete doorstagairgemaakt;
+	std::cout << RESET;
+
+	std::cout << BLUE;
+	doorstagairgemaakt = stagair.makeForm(PRESI_PARDON_REQUEST, "thuis");
+	std::cout << doorstagairgemaakt << std::endl;
+	delete doorstagairgemaakt;
+	std::cout << RESET;
+
+	std::cout << RED;
+	doorstagairgemaakt = stagair.makeForm(ROBOTOMY_REQUEST, "thuis");
+	std::cout << doorstagairgemaakt << std::endl;
+	delete doorstagairgemaakt;
+	std::cout << RESET;
+
+	std::cout << YELLOW;
+	doorstagairgemaakt = stagair.makeForm("wrong request", "thuis");
+	std::cout << doorstagairgemaakt << std::endl;
+	delete doorstagairgemaakt;
+	std::cout << RESET;
+}
+
+
 int main(void)
 {
 	Bureaucrat	Obama("Obama", 33);
-	AForm		*law_proposal;
-	ShrubberyCreationForm form("bill 56");
-	AForm		*haahiahdwhiuahd = new RobotomyRequestForm("robocop");
 
-	ShrubberyCreationForm formcpy;
-	std::cout << BLUE;
-	Bureaucrat	obamacpy;
-
-	law_proposal = &form;
-	obamacpy = Obama;
-	formcpy = form;
-	
-	// haahiahdwhiuahd = law_proposal;
-	std::cout << RESET;
-	std::cout << RED;
-
-
-
-	try{
-		haahiahdwhiuahd->execute(Obama);
-	} catch (const::AForm::GradeTooHighException &exc)
+	try {
+		interntests();
+	} catch (Intern::Wrong_Creation_Request_Exception &e)
 	{
-		std::cout << "Execute caught exception: " << exc.what() << std::endl;
-	} catch (const::AForm::GradeTooLowException &exc)
-	{
-		std::cout << "Execute caught exception: " << exc.what() << std::endl;
-	}catch (const::AForm::FormIsNotToBeSignedException &exc)
-	{
-		std::cout << "Execute caught exception: " << exc.what() << std::endl;
+		std::cout << "interntests: " << e.what() << std::endl;
+		std::cout << RESET;
 	}
-	std::cout << RESET;
-	std::cout << GREEN;
 
+	std::cout << BLUE;
 	Intern stagair;
-	AForm *doorstagairgemaakt = stagair.makeForm(ROBOTOMY_REQUEST, "thuis");
+	AForm	*doorstagairgemaakt = stagair.makeForm(PRESI_PARDON_REQUEST, "thuis");
 	std::cout << doorstagairgemaakt << std::endl;
 	std::cout << RESET;
 
@@ -75,9 +82,9 @@ int main(void)
 	}
 
 	std::cout << &Obama << std::endl;
-	Obama.signForm(law_proposal);
-	law_proposal->beSigned(Obama);
-	Obama.signForm(law_proposal);
+	Obama.signForm(doorstagairgemaakt);
+	doorstagairgemaakt->beSigned(Obama);
+	Obama.signForm(doorstagairgemaakt);
 
 	try
 	{
@@ -91,9 +98,25 @@ int main(void)
 	{
 		std::cout << "Increment caught exception: " << exc.what() << std::endl;
 	}
+	std::cout << BLUE;
 
 	try{
-		law_proposal->execute(Obama);
+		doorstagairgemaakt->execute(Obama);
+	} catch (const::AForm::GradeTooHighException &exc)
+	{
+		std::cout << "Execute caught exception: " << exc.what() << std::endl;
+	} catch (const::AForm::GradeTooLowException &exc)
+	{
+		std::cout << "Execute caught exception: " << exc.what() << std::endl;
+	} catch (const::AForm::FormIsNotToBeSignedException &exc)
+	{
+		std::cout << "Execute caught exception: " << exc.what() << std::endl;
+	}
+	std::cout << RESET;
+
+
+	try{
+		Obama.executeForm(*doorstagairgemaakt);
 	} catch (const::AForm::GradeTooHighException &exc)
 	{
 		std::cout << "Execute caught exception: " << exc.what() << std::endl;
@@ -105,21 +128,13 @@ int main(void)
 		std::cout << "Execute caught exception: " << exc.what() << std::endl;
 	}
 
+	std::cout << BLUE;
+	std::cout << doorstagairgemaakt << std::endl;
+	std::cout << RESET;
 
-	try{
-		Obama.executeForm(*law_proposal);
-	} catch (const::AForm::GradeTooHighException &exc)
-	{
-		std::cout << "Execute caught exception: " << exc.what() << std::endl;
-	} catch (const::AForm::GradeTooLowException &exc)
-	{
-		std::cout << "Execute caught exception: " << exc.what() << std::endl;
-	} catch (const::AForm::FormIsNotToBeSignedException &exc)
-	{
-		std::cout << "Execute caught exception: " << exc.what() << std::endl;
-	}
-	std::cout << law_proposal << std::endl;
 	std::cout << &Obama << std::endl;
 
-	delete haahiahdwhiuahd;
+	std::cout << BLUE;
+	delete doorstagairgemaakt;
+	std::cout << RESET;
 }

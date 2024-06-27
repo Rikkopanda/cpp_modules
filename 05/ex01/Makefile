@@ -15,6 +15,7 @@ OBJS = $(addprefix $(OBJDIR), $(notdir $(SRCS:.cpp=.o)))
 EXE = Bureaucrat_with_forms
 FLAGS = -Wall -Werror -Wextra \
 	-std=c++11
+FLAGS += $(INCLUDE)
 
 .PHONY: all clean fclean re bonus
 

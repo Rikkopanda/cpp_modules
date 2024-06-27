@@ -30,7 +30,7 @@ class Intern{
     	const FormCreationEntry formCreationTable[3] = {
 			{"robotomy request", CreateRobotomyRequestForm},
 			{"presidential pardon", CreatePresidentialPardonForm},
-			{"shrubbery creation", CreateShrubberyCreationForm}
+			{"shrubbery creation", CreateShrubberyCreationForm},
 		};
 	public:
 		Intern(void);

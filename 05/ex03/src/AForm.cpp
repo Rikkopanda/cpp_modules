@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:37:40 by rikverhoeve       #+#    #+#             */
-/*   Updated: 2024/06/22 12:34:56 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/06/26 13:09:31 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,3 +138,12 @@ std::ostream& operator<<(std::ostream &out, AForm *form)
 	<< form->getGradeToExcecute() << " grade to sign: " << form->getGradeToSign() << " target: "<< form->getTarget() << std::flush;
 	return out;
 }
+
+// /*
+// 	can only copy signed_status, because this is not a const
+// */
+// AForm& AForm::operator=(AForm &src)
+// {
+// 	this->signed_status = src.getStatus();
+// 	return *this;
+// }
