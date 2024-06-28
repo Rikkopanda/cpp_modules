@@ -6,7 +6,7 @@
 /*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:24:11 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/27 10:22:03 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/06/27 19:49:40 by rikverhoeve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,7 @@ int is_double_literal(std::string &str)
 
 void convert_to_pseudo_float(std::string &str)
 {
-	if (str == "-inf" || str == "+inf" || || str == "nan" || str == "inf")
+	if (str == "-inf" || str == "+inf" || str == "nan" || str == "inf")
 	{
 		str = str + "f";
 	}
