@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Serializer.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/07/02 19:16:21 by rverhoev         ###   ########.fr       */
+/*   Created: 2024/01/29 18:11:09 by rverhoev          #+#    #+#             */
+/*   Updated: 2024/06/27 10:02:45 by rikverhoeve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
+#ifndef Serializer_HPP
+# define Serializer_HPP
+
 #include <iostream>
 #include <string>
+#include <exception>
 
-int main(int argc, char **argv)
-{
-	if (argc != 2)
-		return (std::cout << "not enough arguments" << std::endl, 0);
-	std::string test(argv[1]);
-	ScalarConverter::convert(test);
+class Data;
 
-	// ScalarConverter oke;
-	// std::cout << &Obama << std::endl;
-}
+class Serializer {
+	public:
+		static uintptr_t serialize(Data* ptr);
+		static Data* deserialize(uintptr_t raw);
+		virtual ~Serializer() = 0;
+};
+
+#endif

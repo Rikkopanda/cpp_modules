@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Data.hpp                                :+:      :+:    :+:   */
+/*   Serializer.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef B_HPP
-# define B_HPP
+#ifndef BASE_HPP
+# define BASE_HPP
 
 #include <iostream>
 #include <string>
 #include <exception>
 
-#include "Base.hpp"
-
-class B : public Base {	
+class Base {
 	public:
-		std::string TypeName();
-		B();
-		~B();
+		virtual std::string TypeName();
+		Base();
+		virtual ~Base() = 0; // makes sure that derived class's destructors are called, if you have a Base * with a derived class ptr
+		// means also that derived destructor is called first. Base destructor still needs implementation for destruction of Base
+		static Base *generate(void);
 };
 
 #endif
