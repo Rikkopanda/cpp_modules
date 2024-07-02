@@ -6,7 +6,7 @@
 /*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:11:09 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/27 10:02:45 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/07/02 07:50:34 by rikverhoeve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,9 @@ enum e_bitflags
 	OK_FLOAT,
 	NON_DISPLAYABLE,
 	PSEUDO_LITERAL_F,
+	DOUBLE_ADD_DOT_ZERO,
 	PSEUDO_LITERAL_D
 };
-
-typedef struct s_func_table
-{
-	t_func_ptr	fptr;
-	std::string matching_str;
-} t_func_table;
 
 class ScalarConverter {
 	public:
