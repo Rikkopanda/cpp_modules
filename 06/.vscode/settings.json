@@ -68,7 +68,8 @@
 		"typeinfo": "cpp",
 		"strstream": "cpp",
 		"cfenv": "cpp",
-		"variant": "cpp"
+		"variant": "cpp",
+		"regex": "cpp"
 	},
 	"C_Cpp.default.compilerPath": "/usr/bin/g++"
 }
