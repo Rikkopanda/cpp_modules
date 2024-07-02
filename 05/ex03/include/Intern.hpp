@@ -42,7 +42,7 @@ class Intern{
 				std::string message;
 			public:
 				Wrong_Creation_Request_Exception(const char *msg);
-				const char *what() const noexcept override;
+				const char *what() const noexcept(true) override;
 		};
 };
 

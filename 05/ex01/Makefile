@@ -27,7 +27,7 @@ $(OBJDIR):
 $(EXE) : $(OBJS)
 	$(CC) $(FLAGS) $(OBJS) -o $(EXE)
 
-$(OBJS): $(OBJDIR)%.o: $(SRCDIR)%.cpp    6
+$(OBJS): $(OBJDIR)%.o: $(SRCDIR)%.cpp
 		$(CC) $(FLAGS) -c $< -o $@
 
 clean:

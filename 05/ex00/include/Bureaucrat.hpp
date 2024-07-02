@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
+/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:11:09 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/18 12:11:37 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/07/02 11:28:03 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ class Bureaucrat {
 		Bureaucrat(std::string _name, int _grade);
 		~Bureaucrat(void);
 		void		initGrade(int &_grade);
-		std::string	getName();
-		int			getGrade();
+		std::string	getName() const;
+		int			getGrade() const;
 		void		DecrementGrade();
 		void		IncrementGrade();
 		class GradeTooHighException : public std::exception
@@ -36,8 +36,7 @@ class Bureaucrat {
 				std::string message;
 			public:
 				GradeTooHighException(const char *msg);
-				const char *what() const noexcept override;
-				// ~GradeTooHighException(void);
+				const char *what() const noexcept(true) override;
 		};
 		class GradeTooLowException : public std::exception
 		{
@@ -45,8 +44,7 @@ class Bureaucrat {
 				std::string message;
 			public:
 				GradeTooLowException(const char *msg);
-				const char *what() const noexcept override;
-				// ~GradeTooLowException(void);
+				const char *what() const noexcept(true) override;
 		};
 };
 

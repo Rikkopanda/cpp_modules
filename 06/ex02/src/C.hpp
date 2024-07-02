@@ -17,7 +17,8 @@
 #include <string>
 #include <exception>
 
-#include "Base.hpp"
+class Base;
+
 class C : public Base {	
 	public:
 		std::string TypeName();

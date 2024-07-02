@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
+/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:11:09 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/20 09:03:53 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/07/01 17:49:37 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ class Bureaucrat {
 		int			getGrade() const;
 		void		DecrementGrade();
 		void		IncrementGrade();
-		void		signForm(Form &form) const;
+		void		signForm(Form *form) const;
 		class GradeTooHighException : public std::exception
 		{
 			private:
 				std::string message;
 			public:
 				GradeTooHighException(const char *msg);
-				const char *what() const noexcept override;
+				const char *what() const noexcept(true) override;
 				// ~GradeTooHighException(void);
 		};
 		class GradeTooLowException : public std::exception
@@ -48,7 +48,7 @@ class Bureaucrat {
 				std::string message;
 			public:
 				GradeTooLowException(const char *msg);
-				const char *what() const noexcept override;
+				const char *what() const noexcept(true) override;
 				// ~GradeTooLowException(void);
 		};
 };

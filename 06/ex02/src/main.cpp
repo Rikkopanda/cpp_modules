@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
+/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/28 10:02:55 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/07/02 18:34:35 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,10 @@ int main(int argc, char **argv)
 	identify(directA);
 	identify(ptr_to_block_var);
 	check_type_by_way_of_casting(ptr_to_block_var);
-	
+
 	delete something;
+
+
+	Base *R = Base::generate();
+	std::cout << R->TypeName() << std::endl;
 }

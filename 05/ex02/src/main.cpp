@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/26 11:24:29 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/07/01 18:16:22 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,8 @@ int main(void)
 	obamacpy = Obama;
 	formcpy = form;
 	
-	// haahiahdwhiuahd = law_proposal;
 	std::cout << RESET;
 	std::cout << RED;
-
-
 
 	try{
 		haahiahdwhiuahd->execute(Obama);

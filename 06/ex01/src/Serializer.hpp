@@ -20,8 +20,6 @@
 class Data;
 
 class Serializer {
-	private:
-		__UINTPTR_TYPE__ data;	
 	public:
 		static uintptr_t serialize(Data* ptr);
 		static Data* deserialize(uintptr_t raw);

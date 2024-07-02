@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/27 13:21:25 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/07/02 11:27:08 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,18 @@
 #include <iostream>
 #include <string>
 
+/*
+voorbeeld om parameter te gebruiken in noexcept
+
+void log(const std::string &msg) noexcept(Bureaucrat.IncrementGrade()) {
+	std::cout << msg << std::endl;
+	Trump.IncrementGrade();
+}
+*/
+
 int main(void)
 {
 	Bureaucrat Obama("Obama", -12);
-
 	try
 	{
 		Obama.IncrementGrade();

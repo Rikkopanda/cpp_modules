@@ -16,7 +16,7 @@ SRCS = $(addprefix $(SRCDIR), \
 		main.cpp)
 
 OBJS = $(addprefix $(OBJDIR), $(notdir $(SRCS:.cpp=.o)))
-EXE = Bureaucrat_with_forms
+EXE = WithInterns
 FLAGS = -Wall -Werror -Wextra \
 	-std=c++11
 FLAGS += $(INCLUDE)

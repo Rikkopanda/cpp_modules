@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 10:37:40 by rikverhoeve       #+#    #+#             */
-/*   Updated: 2024/06/22 12:29:35 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/07/01 17:59:38 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("default name", 145, 
 	std::cout << "default constructor ShrubberyCreationForm, initialize " << name << "'s grade_sign to " << grade_sign << ", grade_to_excecute to " << grade_to_excecute << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string _target) : AForm("default name", 25, 5, false), target(_target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string _target) : AForm("default name", 145, 137, false), target(_target)
 {
 	std::cout << "parameter constructor ShrubberyCreationForm, initialize " << name << "'s grade_sign to " << grade_sign << ", grade_to_excecute to " << grade_to_excecute << "at target" << target <<std::endl;
 }

@@ -23,6 +23,7 @@ class Base {
 		Base();
 		virtual ~Base() = 0; // makes sure that derived class's destructors are called, if you have a Base * with a derived class ptr
 		// means also that derived destructor is called first. Base destructor still needs implementation for destruction of Base
+		static Base *generate(void);
 };
 
 #endif

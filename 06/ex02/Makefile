@@ -13,12 +13,17 @@ SRCS = $(addprefix $(SRCDIR), \
 
 OBJS = $(addprefix $(OBJDIR), $(notdir $(SRCS:.cpp=.o)))
 EXE = yes
-# FLAGS = -Wall -Werror -Wextra \
+FLAGS = #-Wall -Werror -Wextra \
 	-std=c++11
 
 .PHONY: all clean fclean re bonus
 
 all: $(OBJDIR) $(EXE)
+
+print: FLAGS += -DPRINT_MORE_INFO
+print: clean $(OBJDIR) $(EXE)
+print:
+	@echo compiled with print messages
 
 $(OBJDIR):
 	mkdir $(OBJDIR)

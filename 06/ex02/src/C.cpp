@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   C.cpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
+/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 21:00:56 by rikverhoeve       #+#    #+#             */
-/*   Updated: 2024/06/28 09:59:35 by rikverhoeve      ###   ########.fr       */
+/*   Updated: 2024/07/02 17:49:23 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,14 @@ std::string C::TypeName()
 
 C::C()
 {
-	std::cout << "C constructor called" << std::endl;
+	#ifdef PRINT_MORE_INFO
+	 std::cout << "C constructor called" << std::endl;
+	#endif
 }
 
 C::~C()
 {
-	std::cout << "C destructor called" << std::endl;
+	#ifdef PRINT_MORE_INFO
+	 std::cout << "C destructor called" << std::endl;
+	#endif
 }

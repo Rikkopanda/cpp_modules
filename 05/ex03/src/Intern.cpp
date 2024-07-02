@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/22 12:49:29 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/27 13:03:25 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/07/01 18:08:03 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ AForm* Intern::makeForm(std::string form_type_name, std::string target) const
 		// std::cout << "wrong input given to makeForm, " << std::endl;
 		throw Wrong_Creation_Request_Exception("wrong input given");
 	}
+	std::cout << "Intern creates " << form_type_name << "with target " << target << std::endl;
 	AForm *form = formCreationTable[i].createFunc(target);
 	return form;
 }

@@ -33,7 +33,7 @@ class AForm {
 				std::string message;
 			public:
 				GradeTooHighException(const char *msg);
-				const char *what() const noexcept override;
+				const char *what() const noexcept(true) override;
 		};
 		class GradeTooLowException : public std::exception
 		{
@@ -41,7 +41,7 @@ class AForm {
 				std::string message;
 			public:
 				GradeTooLowException(const char *msg);
-				const char *what() const noexcept override;
+				const char *what() const noexcept(true) override;
 		};
 		class FormIsNotToBeSignedException : public std::exception
 		{
@@ -49,7 +49,7 @@ class AForm {
 				std::string message;
 			public:
 				FormIsNotToBeSignedException(const char *msg);
-				const char *what() const noexcept override;
+				const char *what() const noexcept(true) override;
 		};
 };
 

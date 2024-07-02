@@ -6,7 +6,7 @@
 /*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:11:09 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/06/20 13:06:21 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/07/01 16:30:11 by rverhoev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ class Bureaucrat {
 				std::string message;
 			public:
 				GradeTooHighException(const char *msg);
-				const char *what() const noexcept override;
+				const char *what() const noexcept(true) override;
 				// ~GradeTooHighException(void);
 		};
 		class GradeTooLowException : public std::exception
@@ -51,7 +51,7 @@ class Bureaucrat {
 				std::string message;
 			public:
 				GradeTooLowException(const char *msg);
-				const char *what() const noexcept override;
+				const char *what() const noexcept(true) override;
 				// ~GradeTooLowException(void);
 		};
 };

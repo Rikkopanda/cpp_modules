@@ -20,7 +20,7 @@ RobotomyRequestForm::RobotomyRequestForm(void) : AForm("default name", 72, 45, f
 	std::cout << "default constructor RobotomyRequestForm, initialize " << name << "'s grade_sign to " << grade_sign << ", grade_to_excecute to " << grade_to_excecute << "at target" << target <<std::endl;
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string _target) : AForm("default name", 25, 5, false), target(_target)
+RobotomyRequestForm::RobotomyRequestForm(std::string _target) : AForm("default name", 72, 45, false), target(_target)
 {
 	std::cout << "parameter constructor RobotomyRequestForm, initialize " << name << "'s grade_sign to " << grade_sign << ", grade_to_excecute to " << grade_to_excecute << "at target" << target <<std::endl;
 }
