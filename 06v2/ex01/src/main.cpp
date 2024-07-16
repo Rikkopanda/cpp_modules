@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/07/02 20:12:38 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/07/03 10:42:39 by rikverhoeve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,4 @@ int main()
 	volatile Data *convertedback3 = Serializer::deserialize(integer3);
 	std::cout << "ptr: " << const_cast<Data *>(convertedback3) << std::endl << std::endl;
 	std::cout << RESET;
-
 }

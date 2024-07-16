@@ -17,6 +17,12 @@
 #include <string>
 #include <exception>
 
+enum e_for_class_select{
+	A_case,
+	B_case,
+	C_case
+};
+
 class Base {
 	public:
 		virtual std::string TypeName();

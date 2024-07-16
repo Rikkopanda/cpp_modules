@@ -13,6 +13,11 @@ EXE = yes
 FLAGS = -Wall -Werror -Wextra \
 	-std=c++11
 
+print: FLAGS += -DPRINT_MORE_INFO
+print: clean $(OBJDIR) $(EXE)
+print:
+	@echo compiled with print messages
+
 .PHONY: all clean fclean re bonus
 
 all: $(OBJDIR) $(EXE)

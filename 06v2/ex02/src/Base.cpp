@@ -15,8 +15,8 @@
 #include "B.hpp"
 #include "C.hpp"
 #include "text_colors.hpp"
-
-#include  <random>
+#include <exception>
+#include <random>
 
 std::string Base::TypeName()
 {
@@ -40,20 +40,43 @@ Base::~Base()
 
 void identify(Base *p)
 {
-	std::cout << "identified: " << p->TypeName() << std::endl;
+	if (dynamic_cast<A *>(p))
+		std::cout << "identified: pointer A" << std::endl;
+	else if (dynamic_cast<B *>(p))
+		std::cout << "identified: pointer B" << std::endl;
+	else if (dynamic_cast<C *>(p))
+		std::cout << "identified: pointer C" << std::endl;
 }
 
 void identify(Base& p)
 {
-	std::cout << "identified: " << p.TypeName() << std::endl;
+	try
+	{
+		dynamic_cast<A &>(p);
+		std::cout << "identified: reference A" << std::endl;
+	}catch (std::exception &exc)
+	{
+		std::cout << "exception caught: " << exc.what() << std::endl;
+	}
+
+	try
+	{
+		dynamic_cast<B &>(p);
+		std::cout << "identified: reference B" << std::endl;
+	}catch (std::exception &exc)
+	{
+		std::cout << "exception caught: " << exc.what() << std::endl;
+	}
+
+	try
+	{
+		dynamic_cast<C &>(p);
+		std::cout << "identified: reference C" << std::endl;
+	}catch (std::exception &exc)
+	{
+		std::cout << "exception caught: " << exc.what() << std::endl;
+	}
 }
-
-
-enum e_for_class_select{
-	A_case,
-	B_case,
-	C_case
-};
 
 /*
 	https://cplusplus.com/reference/random/mersenne_twister_engine/

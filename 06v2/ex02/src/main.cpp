@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 10:02:30 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/07/02 20:09:13 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/07/03 11:01:06 by rikverhoeve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 void check_type_by_way_of_casting(Base *ptr)
 {
 	if (dynamic_cast<A *>(ptr))
-		std::cout << "dynamtic cast check: A" << std::endl;
+		std::cout << "dynamic cast check: A" << std::endl;
 	else if (dynamic_cast<B *>(ptr))
-		std::cout << "dynamtic cast check: B" << std::endl;
+		std::cout << "dynamic cast check: B" << std::endl;
 	else if (dynamic_cast<C *>(ptr))
-		std::cout << "dynamtic cast check: C" << std::endl;
+		std::cout << "dynamic cast check: C" << std::endl;
 }
 
 void checkRandom()
@@ -36,7 +36,8 @@ void checkRandom()
 	std::cout << "generated: " << R->TypeName() << std::endl;
 
 	identify(R);
-	check_type_by_way_of_casting(R);
+	delete R;
+	// check_type_by_way_of_casting(R);
 }
 
 
@@ -53,7 +54,7 @@ int main()
 	identify(*something);
 	identify(directA);
 	identify(ptr_to_block_var);
-	check_type_by_way_of_casting(ptr_to_block_var);
+	// check_type_by_way_of_casting(ptr_to_block_var);
 
 	checkRandom();
 	delete something;

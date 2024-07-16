@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 18:11:09 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/07/02 20:01:56 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/07/03 10:24:39 by rikverhoeve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ enum e_bitflags
 
 class ScalarConverter {
 	public:
+		ScalarConverter(void);
+		ScalarConverter(const std::string useless_str);
+		ScalarConverter(const ScalarConverter &src);
+		ScalarConverter &operator=(ScalarConverter &src);
 		static bool impossible;
 		static int double_flag;
 		static int char_flag;
@@ -37,12 +41,6 @@ class ScalarConverter {
 		static int float_flag;
 		static int total_flag_bitmask;
 		static std::string saved_pseudo_literal;
-
-		// void print_scalar(char scalar, const char *cstr);
-		// void print_scalar(float scalar, const char *cstr);
-		// void print_scalar(double scalar, const char *cstr);
-		// void print_scalar(int scalar, const char *cstr);
-		// void check_impossible_nonnum(const char *cstr);
 		static void convert(std::string str_of_literal);
 		virtual ~ScalarConverter(void) = 0;
 };

@@ -21,6 +21,10 @@ class Data;
 
 class Serializer {
 	public:
+		Serializer(void);
+		Serializer(std::string useless_input);
+		Serializer(Serializer &src);
+		Serializer& operator=(Serializer &src);
 		static uintptr_t serialize(Data* ptr);
 		static Data* deserialize(uintptr_t raw);
 		virtual ~Serializer() = 0;

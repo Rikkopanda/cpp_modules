@@ -29,9 +29,9 @@ class Data {
 		Data(void);
 		Data(int data_input);
 		Data(Data &src);
-		int getData(void);
-		~Data(void);
 		Data& operator=(Data &src);
+		~Data(void);
+		int getData(void);
 };
 
 #endif
