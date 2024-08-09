@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Data.hpp                                :+:      :+:    :+:   */
+/*   Swap.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,28 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef Data_HPP
-# define Data_HPP
+#ifndef MIN_MAX_HPP
+# define MIN_MAX_HPP
 
-#include <iostream>
-#include <string>
-#include <exception>
+template <typename T> T min (T a, T b)
+{
+	return (a < b ? a : b);
+}
 
-class Data {
-	private:
-		int some_data;
-		//bit fields
-		// unsigned int a : 3; //three bits values: 0....7
-		// unsigned int b : 3;
-		// unsigned int c : 3;
-		// unsigned int d : 3;
-	public:
-		Data(void);
-		Data(int data_input);
-		Data(Data &src);
-		int getData(void);
-		~Data(void);
-		Data& operator=(Data &src);
-};
+template <typename T> T max (T a, T b)
+{
+	return (a > b ? a : b);
+}
+
+//https://stackoverflow.com/questions/38043442/how-do-inline-variables-work
 
 #endif

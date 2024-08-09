@@ -68,6 +68,8 @@
 		"thread": "cpp",
 		"cinttypes": "cpp",
 		"typeindex": "cpp",
-		"regex": "cpp"
+		"regex": "cpp",
+		"strstream": "cpp",
+		"cfenv": "cpp"
 	}
 }

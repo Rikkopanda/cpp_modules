@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                :+:      :+:    :+:   */
+/*   Swap.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef Serializer_HPP
-# define Serializer_HPP
+#ifndef Swap_HPP
+# define Swap_HPP
 
-#include <iostream>
-#include <string>
-#include <exception>
+template <typename T> void swap (T *a, T *b)
+{
+	T temp_val;
 
-class Data;
+	temp_val = *a;
+	*a = *b;
+	*b = temp_val;
+}
 
-class Serializer {
-	public:
-		static uintptr_t serialize(Data* ptr);
-		static Data* deserialize(uintptr_t raw);
-		virtual ~Serializer() = 0;
-};
+template <typename T> void swap (T &a, T &b)
+{
+	T temp_val = a;
+
+	a = b;
+	b = temp_val;
+}
+
+
+//https://stackoverflow.com/questions/38043442/how-do-inline-variables-work
 
 #endif

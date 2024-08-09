@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Data.hpp                                :+:      :+:    :+:   */
+/*   Swap.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef A_HPP
-# define A_HPP
+#ifndef MIN_MAX_HPP
+# define MIN_MAX_HPP
 
-#include <iostream>
-#include <string>
-#include <exception>
+template <typename T> T min (T a, T b)
+{
+	return (a < b ? a : b);
+}
 
-#include "Base.hpp"
-class A : public Base {	
-	public:
-		std::string TypeName();
-		A();
-		~A();
-};
+template <typename T> T max (T a, T b)
+{
+	return (a > b ? a : b);
+}
+
+//https://stackoverflow.com/questions/38043442/how-do-inline-variables-work
 
 #endif

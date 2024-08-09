@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rverhoev <rverhoev@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/29 13:24:11 by rverhoev          #+#    #+#             */
-/*   Updated: 2024/07/02 20:00:41 by rverhoev         ###   ########.fr       */
+/*   Updated: 2024/07/02 10:02:36 by rikverhoeve      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 #include <string>
 #include <float.h>
 #include <limits.h>
-#include <sstream>
 
 bool ScalarConverter::impossible = false;
 int ScalarConverter::char_flag = OKPRINT;
@@ -37,13 +36,13 @@ std::string ScalarConverter::saved_pseudo_literal;
 // 	return i;
 // }
 
-void possibilities(std::string &str, std::stringstream	&ss)
+void possibilities(std::string &str, std::stringstream	*ss)
 {
 	long double			dval;
 
-	ss << str;
-	ss >> dval;
-	// std::cout << "now " << dval << std::endl;
+	*ss << str;
+	*ss >> dval;
+	std::cout << "now " << dval << std::endl;
 
 	if (float_inf_check(str))
 	{
@@ -61,7 +60,7 @@ void possibilities(std::string &str, std::stringstream	&ss)
 		ScalarConverter::double_flag = PSEUDO_LITERAL_D;
 		return ;
 	}
-	// std::cout << "now " << dval << std::endl;
+	std::cout << "now " << dval << std::endl;
 	if (static_cast<int>(dval) < 255 && static_cast<int>(dval) >= 0)
 	{
 		// std::cout << "yes: " << static_cast<int>(dval) << std::endl;
@@ -72,11 +71,11 @@ void possibilities(std::string &str, std::stringstream	&ss)
 	}
 	else
 		ScalarConverter::char_flag = IMPOSSIBLE;
-	// std::cout << "now2 " << dval << std::endl;
+	std::cout << "now2 " << dval << std::endl;
 
 	if (!isdigit(str.c_str()[0]) && dval == 0)
 	{
-		// std::cout << "1 " << dval << std::endl;
+		std::cout << "1 " << dval << std::endl;
 		ScalarConverter::double_flag = IMPOSSIBLE;
 		ScalarConverter::int_flag = IMPOSSIBLE;
 		ScalarConverter::float_flag = IMPOSSIBLE;
@@ -84,20 +83,20 @@ void possibilities(std::string &str, std::stringstream	&ss)
 	}
 	if (dval > __INT_MAX__ || dval < INT_MIN)
 	{
-		// std::cout << "2 " << dval << std::endl;
+		std::cout << "2 " << dval << std::endl;
 		ScalarConverter::int_flag = IMPOSSIBLE;
 		ScalarConverter::char_flag = IMPOSSIBLE;
 	}
 	if ((dval > MAXFLOAT) || (-dval < -MAXFLOAT))
 	{
-		// std::cout << "bigger than int " << dval << std::endl;
+		std::cout << "bigger than int " << dval << std::endl;
 		ScalarConverter::int_flag = IMPOSSIBLE;
 		ScalarConverter::char_flag = IMPOSSIBLE;
 		ScalarConverter::float_flag = IMPOSSIBLE;
 	}
 	if (dval > DBL_MAX  || -dval < -DBL_MAX)
 	{
-		// std::cout << "very big " << dval << std::endl;
+		std::cout << "very big " << dval << std::endl;
 		ScalarConverter::double_flag = IMPOSSIBLE;
 		ScalarConverter::int_flag = IMPOSSIBLE;
 		ScalarConverter::char_flag = IMPOSSIBLE;
@@ -178,15 +177,12 @@ void convert_from_float(std::string &str, int digits_after_dot)
 
 	ss << str;
 	ss >> val;	
-	std::cout << std::fixed;
-	std::cout.precision(FLT_DIG < digits_after_dot ? FLT_DIG : digits_after_dot);
+	// std::cout << "intflag:" << ScalarConverter::float_flag << std::endl;
 	print_value(static_cast<float>(val), ScalarConverter::float_flag, "float");
-	std::cout.precision(DBL_DIG < digits_after_dot ? DBL_DIG : digits_after_dot);
 	print_value(static_cast<double>(val), ScalarConverter::double_flag, "double");
 	print_value(static_cast<int>(val), ScalarConverter::int_flag, "int");
 	print_value(static_cast<char>(val), ScalarConverter::char_flag, "char");
 }
-// std::cout << "intflag:" << ScalarConverter::float_flag << std::endl;
 
 int double_inf_check(std::string &str)
 {
@@ -215,7 +211,7 @@ int because_very_big(std::string &str)
 	return false;
 }
 
-int because_double_format()
+int because_double_format(std::string &str)
 {
 	if (ScalarConverter::int_flag == IMPOSSIBLE && ScalarConverter::double_flag != IMPOSSIBLE)
 		return true;
@@ -229,7 +225,7 @@ int is_double_literal(std::string &str)
 		return true;
 	}
 	// std::cout << "found " << str.rfind('.') << std::endl;
-	return (because_double_format() || because_very_big(str));
+	return (because_double_format(str) || because_very_big(str));
 }
 
 void convert_to_pseudo_float(std::string &str)
@@ -293,19 +289,21 @@ void convert_from_double(std::string &str, int digits_after_dot)
 
 	ss << str;
 	ss >> val;
+
+	digits_after_dot = ss.str().length()
+
+
+	// static_cast<int>(val)
 	std::cout << std::fixed;
-	std::cout.precision(DBL_DIG < digits_after_dot ? DBL_DIG : digits_after_dot);
+	std::cout << std::setprecision(DBL_DIG < digits_after_dot ? DBL_DIG : digits_after_dot);
 	print_value(static_cast<double>(val), ScalarConverter::double_flag, "double");
-	std::cout.precision(FLT_DIG < digits_after_dot ? FLT_DIG : digits_after_dot);
+	std::cout << std::fixed;
+	std::cout << std::setprecision(FLT_DIG < digits_after_dot ? FLT_DIG : digits_after_dot);
 	print_value(static_cast<float>(val), ScalarConverter::float_flag, "float");
 	print_value(static_cast<int>(val), ScalarConverter::int_flag, "int");
 	print_value(static_cast<char>(val), ScalarConverter::char_flag, "char");
 }
-// std::cout << std::fixed;
-// if (ss.str().length() > 8)
-// 	digits_after_dot = ss.str().length() - FLT_DIG;
-// std::cout << std::setprecision(digits_after_dot > 0 ? digits_after_dot : 0);
-
+#include <regex>
 
 
 std::string trim_to_number_str(const std::string &input, int *digits_after_dot)
@@ -313,9 +311,9 @@ std::string trim_to_number_str(const std::string &input, int *digits_after_dot)
 	std::string result;
 	bool		hasDot = false;
 
-	for (int i = 0; i < static_cast<int>(input[i]); i++)
+	for (int i = 0; i < input.size(); i++)
 	{
-		if (i == 0 && static_cast<int>(input[i]) == '-')
+		if (i == 0 && input[i] == '-')
 		{
 			//ok
 		}
@@ -333,11 +331,19 @@ std::string trim_to_number_str(const std::string &input, int *digits_after_dot)
 
 void ScalarConverter::convert(std::string str_of_literal)
 {
+	// std::cout << "intflag:" << ScalarConverter::int_flag << std::endl;
 	std::stringstream	ss;
 	int					digits_after_dot = 0;
 
-	possibilities(str_of_literal, ss);
-	trim_to_number_str(ss.str(), &digits_after_dot);
+	possibilities(str_of_literal, &ss);
+	std::cout << "stringstream " << ss.str() << std::endl;
+	std::string numbers_str = trim_to_number_str(ss.str(), &digits_after_dot);
+	// std::regex_replace(ss.str(), std::regex());
+	std::cout << numbers_str << std::endl;
+
+
+
+
 	if (is_char_literal(str_of_literal))
 		convert_from_char(str_of_literal);
 	else if (is_float_literal(str_of_literal))
@@ -349,8 +355,6 @@ void ScalarConverter::convert(std::string str_of_literal)
 	else
 		std::cout << "no type correct type found" << std::endl;
 }
-// std::regex_replace(ss.str(), std::regex());
-// std::cout << numbers_str << std::endl;
 // str->actual type -> convert to three other data types
 // display
 // atoi();

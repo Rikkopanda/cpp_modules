@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Data.hpp                                :+:      :+:    :+:   */
+/*   Swap.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef B_HPP
-# define B_HPP
+#ifndef Swap_HPP
+# define Swap_HPP
 
-#include <iostream>
-#include <string>
-#include <exception>
+template <typename T> void swap (T *a, T *b)
+{
+	T temp_val;
 
-#include "Base.hpp"
+	temp_val = *a;
+	*a = *b;
+	*b = temp_val;
+}
 
-class B : public Base {	
-	public:
-		std::string TypeName();
-		B();
-		~B();
-};
+template <typename T> void swap (T &a, T &b)
+{
+	T temp_val = a;
+
+	a = b;
+	b = temp_val;
+}
+
+
+//https://stackoverflow.com/questions/38043442/how-do-inline-variables-work
 
 #endif

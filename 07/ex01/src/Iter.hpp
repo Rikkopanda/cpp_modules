@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                :+:      :+:    :+:   */
+/*   Swap.hpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rikverhoeven <rikverhoeven@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,20 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BASE_HPP
-# define BASE_HPP
+#ifndef ITER_HPP
+# define ITER_HPP
 
 #include <iostream>
-#include <string>
-#include <exception>
 
-class Base {
-	public:
-		virtual std::string TypeName();
-		Base();
-		virtual ~Base() = 0; // makes sure that derived class's destructors are called, if you have a Base * with a derived class ptr
-		// means also that derived destructor is called first. Base destructor still needs implementation for destruction of Base
-		static Base *generate(void);
-};
+template <typename T> void incr(T *element)
+{
+	*element = *element + static_cast<T>(1);
+}
+
+template <typename T> void print(T *element)
+{
+	std::cout << *element << std::endl;
+}
+
+template <typename T> void iter (T *arr, int len, void ( *pfunction ) (T *element))
+{
+	for (int i = 0; i < len; i++)
+	{
+		pfunction(&arr[i]);
+	}
+}
+
+#define OFFSET_REACH 1
+
+template <typename T> void iter (T *arr, int len, void ( *pfunction ) (T *a, T *b))
+{
+	for (int i = 0; i < len - OFFSET_REACH; i++)
+	{
+		pfunction(&arr[i], &arr[i + 1]);
+	}
+}
+
+
+//https://stackoverflow.com/questions/38043442/how-do-inline-variables-work
 
 #endif

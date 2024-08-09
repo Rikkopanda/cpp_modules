@@ -5,16 +5,13 @@ OBJDIR = obj/
 CC = c++
 
 SRCS = $(addprefix $(SRCDIR), \
-		main.cpp \
-		Base.cpp \
-		A.cpp \
-		B.cpp \
-		C.cpp)
+		main.cpp)
 
 OBJS = $(addprefix $(OBJDIR), $(notdir $(SRCS:.cpp=.o)))
-EXE = yes
+EXE = iter
 FLAGS = -Wall -Werror -Wextra \
 	-std=c++11
+
 
 .PHONY: all clean fclean re bonus
 
