@@ -23,6 +23,16 @@
 		"algorithm": "cpp",
 		"functional": "cpp",
 		"iterator": "cpp",
+		"vim.insertModeKeyBindings": [
+			{
+				"before": ["j", "k"],
+				"after": ["<Esc>"]
+			}
+		],
+		"vim.handleKeys": {
+			"<C-p>": false
+		},
+		"editor.inlineSuggest.enabled": false,
 		"memory": "cpp",
 		"memory_resource": "cpp",
 		"numeric": "cpp",

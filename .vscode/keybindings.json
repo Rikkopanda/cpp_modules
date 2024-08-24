@@ -1,0 +1,7 @@
+
+
+
+{
+	"key": "ctrl+p",
+	"command": "workbench.action.quickOpen"
+}
